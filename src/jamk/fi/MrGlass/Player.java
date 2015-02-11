@@ -43,7 +43,7 @@ public class Player extends Entity {
     
     // hakee iconin kyseisellä metodilla
     public Image getPlayerImg(){
-          ImageIcon ic = new ImageIcon("C:\\Users\\Miika\\Desktop\\Origin\\MrGlass\\src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman.png");
+          ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman.png");
         return ic.getImage();
     }
     
