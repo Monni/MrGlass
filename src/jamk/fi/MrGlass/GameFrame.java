@@ -26,6 +26,9 @@ public class GameFrame extends JPanel implements ActionListener{
    static ArrayList<Spikes> piikit = new ArrayList<Spikes>();
    
     public GameFrame() {
+        
+        System.out.println("ASD");
+        
         setFocusable(true);
         
         MRglass = new Player(50,630);

@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,9 +21,9 @@ import javax.swing.ImageIcon;
 public class Player extends Entity {
     
     //pelaajan x ja y akseli
-    int velX = 0;
-    int velY = 0;
-    int speed = 2;
+    double velX = 0;
+    double velY = 0;
+    double speed = 2;
     
     public Player ( int x , int y) {
         super(x, y);
@@ -29,8 +31,8 @@ public class Player extends Entity {
     }
     //päivittää x ja y coordinaatit
     public void update () {
-        x = x + velX;
-        y = y + velY;
+        x = (int) (x + velX);
+        y = (int) (y + velY);
         
         checkCollision();
     }
@@ -55,7 +57,13 @@ public class Player extends Entity {
           
         if (key == KeyEvent.VK_LEFT){
                 //märää nopeuden
-                velX = -speed;
+                if (-velX < speed) {
+                    velX =- speed + velX * 0.1;
+                }
+                else {
+                    velX = -speed;
+                }
+               
             }
 
             else if (key == KeyEvent.VK_RIGHT){
