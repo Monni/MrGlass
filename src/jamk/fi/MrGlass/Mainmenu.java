@@ -23,9 +23,8 @@ public class Mainmenu extends JPanel {
     public Mainmenu(Window window) {
         this.window = window;
     
-    //JPanel menu = new JPanel();
-    //setSize(1280, 720);
-    //setVisible(true);
+        // Ei layoutia, joten oma toimii
+        setLayout(null);
       
                  
     ImageIcon startImage = new ImageIcon("F:/mario.png");
