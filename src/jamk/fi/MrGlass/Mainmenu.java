@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
 
 /**
  *
@@ -23,28 +27,43 @@ public class Mainmenu extends JPanel {
     public Mainmenu(Window window) {
         this.window = window;
     
-        // Ei layoutia, joten oma toimii
-        setLayout(null);
-      
-                 
-    ImageIcon startImage = new ImageIcon("F:/mario.png");
-    ImageIcon scoreImage = new ImageIcon("F:/mario.png");
-    ImageIcon creditsImage = new ImageIcon("F:/mario.png");
-    ImageIcon quitImage = new ImageIcon("F:/mario.png");
-         
-    JButton startButton = new JButton("Start game", startImage);
-    JButton scoreButton = new JButton("High Scores", scoreImage);
-    JButton creditsButton = new JButton ("Credits", creditsImage);
-    JButton quitButton = new JButton ("Quit game", quitImage);
+    // Layout pois, että omat sijainnit toimivat
+    setLayout(null);
+     
+    
+    // Valikon kuvien lataus
+    ImageIcon titleImage = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\title.png");    
+    ImageIcon startImage = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\startgame.png");
+    ImageIcon scoreImage = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\highscores.png");
+    ImageIcon creditsImage = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\credits.png");
+    ImageIcon quitImage = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\quitgame.png");
+    
+    // Titlen ja nappien luominen
+    JLabel title = new JLabel(titleImage);
+    JButton startButton = new JButton(startImage);
+    JButton scoreButton = new JButton(scoreImage);
+    JButton creditsButton = new JButton (creditsImage);
+    JButton quitButton = new JButton (quitImage);
 
-    
-    startButton.setBounds(900, 200, 250, 70);
-    scoreButton.setBounds(900, 300, 250, 70);
-    creditsButton.setBounds(900, 400, 250, 70);
-    quitButton.setBounds(900, 500, 250, 70);
-    
-    
+    // Sijainnin ja koon määritys
+    title.setBounds(130, 50, titleImage.getIconWidth(), titleImage.getIconHeight());
+    startButton.setBounds(780, 260, startImage.getIconWidth(), startImage.getIconHeight());
+    scoreButton.setBounds(780, 360, scoreImage.getIconWidth(), scoreImage.getIconHeight());
+    creditsButton.setBounds(780, 460, creditsImage.getIconWidth(), creditsImage.getIconHeight());
+    quitButton.setBounds(780, 560, quitImage.getIconWidth(), quitImage.getIconHeight());
  
+    // Reunojen ja fillin poisto
+    startButton.setBorderPainted(false);
+    startButton.setContentAreaFilled(false);
+    scoreButton.setBorderPainted(false);
+    scoreButton.setContentAreaFilled(false);
+    creditsButton.setBorderPainted(false);
+    creditsButton.setContentAreaFilled(false);
+    quitButton.setBorderPainted(false);
+    quitButton.setContentAreaFilled(false);
+ 
+    // Lisätään JPaneliin
+    add(title);
     add(startButton);
     add(scoreButton);
     add(creditsButton);
