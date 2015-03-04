@@ -121,7 +121,7 @@ public class Player {
     }
     
     public Image getPlayerImg(){
-          ImageIcon ic = new ImageIcon("C:\\Users\\Nissinen\\Desktop\\Pixel Art\\Tasohyppely\\Glassman.png"); // "src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png"
+          ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png"); // "src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png"
         return ic.getImage();
     }
     
