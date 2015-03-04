@@ -3,24 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jamk.fi.MrGlass;
+package Game;
 
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
  *
  * @author Nissinen
  */
-
-
-//Luo ikkunan
-public class Main {
-    public static void main(String[] args){
-        JFrame frame = new JFrame("Super system mk 2000 sweeper deeper 3");
-        frame.setSize(1280, 720);
+public class Game {
+    
+    public static void main (String[]args) {
+       // new Images();
+        JFrame frame= new JFrame("TICKS!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        frame.add(new GameFrame());
+        frame.setLayout(new BorderLayout());
+        frame.add(new GamePanel(), BorderLayout.CENTER);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+    
 }
