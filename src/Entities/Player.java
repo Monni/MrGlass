@@ -38,6 +38,10 @@ public class Player {
     private boolean right = false, left = false, jumping = false, falling = false;
     private boolean topCollision = false;
     
+    // Last moved
+    private boolean lastLeft = false;
+    private boolean lastRight = true;
+    
     public Player( int width, int height) {
         x = GamePanel.WIDTH / 2;
        y = GamePanel.HEIGHT / 2;
@@ -84,11 +88,15 @@ public class Player {
         
         topCollision = false;
         
-        if ( right) {
+        if (right) {
             x += moveSpeed;
+            lastRight = true;
+            lastLeft = false;
         }
         if(left) {
             x -= moveSpeed;
+            lastRight = false;
+            lastLeft = true;
         }
         if (jumping){
             y -= currentJumpSpeed;
@@ -115,13 +123,25 @@ public class Player {
     
     
     public void draw(Graphics g) {
+       // If moving or last moved to right
+       if(lastRight) {
+        g.drawImage(getPlayerImgRight(),(int) x,(int) y, null);
+       }
        
-       g.drawImage(getPlayerImg(),(int) x,(int) y, null);
-        
+       // If moving or last moved to left
+       else if (lastLeft) {
+        g.drawImage(getPlayerImgLeft(), (int) x, (int) y, null);
+       }
+       
     }
     
-    public Image getPlayerImg(){
-          ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png"); // "src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png"
+    public Image getPlayerImgRight(){
+          ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png");
+        return ic.getImage();
+    }
+    
+    public Image getPlayerImgLeft() {
+        ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_left.png");
         return ic.getImage();
     }
     

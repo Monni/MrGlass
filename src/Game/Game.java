@@ -16,7 +16,7 @@ public class Game {
     
     public static void main (String[]args) {
        // new Images();
-        JFrame frame= new JFrame("TICKS!");
+        JFrame frame= new JFrame("Super whooperdooper >9000");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());
