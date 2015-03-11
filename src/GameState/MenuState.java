@@ -39,15 +39,15 @@ public class MenuState extends GameState {
         
         // Valikon staattisten kuvien lataus
         Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\title.png");
-        g.drawImage(titleImg, 100, 50, null);
+        g.drawImage(titleImg, 130, 50, null);
         Image startImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\startgame.png");
-        g.drawImage(startImg, 700, 300, null);
+        g.drawImage(startImg, 780, 280, null);
         Image scoreImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\highscores.png");
-        g.drawImage(scoreImg, 700, 400, null);
+        g.drawImage(scoreImg, 780, 380, null);
         Image creditsImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\credits.png");
-        g.drawImage(creditsImg, 700, 500, null);
+        g.drawImage(creditsImg, 780, 480, null);
         Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\quitgame.png");
-        g.drawImage(quitImg, 700, 600, null);
+        g.drawImage(quitImg, 780, 580, null);
        
                // Start valittu
        if(currentSelection == 0) {
