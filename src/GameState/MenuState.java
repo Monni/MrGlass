@@ -9,7 +9,10 @@ import Game.GamePanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -33,10 +36,40 @@ public class MenuState extends GameState {
     }
 
     public void draw(Graphics g) {
+        
+        // Valikon staattisten kuvien lataus
+        Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\title.png");
+        g.drawImage(titleImg, 100, 50, null);
+        Image startImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\startgame.png");
+        g.drawImage(startImg, 700, 300, null);
+        Image scoreImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\highscores.png");
+        g.drawImage(scoreImg, 700, 400, null);
+        Image creditsImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\credits.png");
+        g.drawImage(creditsImg, 700, 500, null);
+        Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\quitgame.png");
+        g.drawImage(quitImg, 700, 600, null);
+       
+               // Start valittu
+       if(currentSelection == 0) {
+        g.drawImage(getSelecterImg(), 650, 300, null);
+       }       // Credits valittu
+       else if(currentSelection == 1) {
+           g.drawImage(getSelecterImg(), 650, 400, null);
+       }       // High scores valittu
+       else if(currentSelection == 2) {
+           g.drawImage(getSelecterImg(), 650, 500, null);
+       }       // Quit valittu
+       else if(currentSelection == 3) {
+           g.drawImage(getSelecterImg(), 650, 600, null);
+       }       
+       
+      
+       
         /* taustan värjäys
         g.setColor(new Color(50,101,200));
         g.fillRect(0,0,GamePanel.WIDTH, GamePanel.HEIGHT);
         */
+       /*
         for (int i = 0; i < options.length; i++) {
             if (i == currentSelection) {
                 g.setColor(Color.RED);                
@@ -50,29 +83,30 @@ public class MenuState extends GameState {
             // asettelee valikon tekstit
             g.drawString(options[i], GamePanel.WIDTH / 2 - 100, 230 + i * 150);
         }
+               */
     }
 
     
     public void keyPressed(int k) {
         if(k == KeyEvent.VK_DOWN){
-            currentSelection++;
-            if (currentSelection >= options.length){
-                currentSelection = 0;
-            }
+            if(currentSelection < 3) currentSelection++;
+            else currentSelection = 0;
+            
         } else if (k == KeyEvent.VK_UP){
             currentSelection--;
             if(currentSelection < 0){
-                currentSelection = options.length - 1;
+                currentSelection = 4 - 1;
             }
         }
         if (k == KeyEvent.VK_ENTER){
             if(currentSelection == 0 ){
                 gsm.states.push(new Level1State(gsm));
-               //play
+               // Start Game
             } else if (currentSelection == 1){
-                // credits
+                // High Scores
             }else if (currentSelection == 2){
-                //quit
+                // Credits
+            }else if (currentSelection == 3) {
                 System.exit(0);
             }
         }
@@ -80,8 +114,12 @@ public class MenuState extends GameState {
 
     
     public void keyReleased(int k) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // Nothing..
     }
     
-    
+     public Image getSelecterImg(){
+          ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png");
+        return ic.getImage();
+    }
+     
 }
