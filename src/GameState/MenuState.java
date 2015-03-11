@@ -38,15 +38,15 @@ public class MenuState extends GameState {
     public void draw(Graphics g) {
         
         // Valikon staattisten kuvien lataus
-        Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\title.png");
+        Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\title.png");
         g.drawImage(titleImg, 130, 50, null);
-        Image startImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\startgame.png");
+        Image startImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\startgame.png");
         g.drawImage(startImg, 780, 280, null);
-        Image scoreImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\highscores.png");
+        Image scoreImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\highscores.png");
         g.drawImage(scoreImg, 780, 380, null);
-        Image creditsImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\credits.png");
+        Image creditsImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\credits.png");
         g.drawImage(creditsImg, 780, 480, null);
-        Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\jamk\\fi\\MrGlass\\images\\mainmenu\\quitgame.png");
+        Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitgame.png");
         g.drawImage(quitImg, 780, 580, null);
        
                // Start valittu
@@ -118,7 +118,7 @@ public class MenuState extends GameState {
     }
     
      public Image getSelecterImg(){
-          ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png");
+          ImageIcon ic = new ImageIcon("src\\resources\\mainmenu\\selector.png");
         return ic.getImage();
     }
      
