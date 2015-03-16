@@ -27,7 +27,7 @@ public class Player {
    private int width, height;
     
     //jumpSpeed
-    private double jumpSpeed = 5;
+    private double jumpSpeed = 4;
     private double currentJumpSpeed = jumpSpeed;
     
     //fallSpeed
@@ -43,8 +43,8 @@ public class Player {
     private boolean lastRight = true;
     
     public Player( int width, int height) {
-        x = GamePanel.WIDTH / 2;
-       y = GamePanel.HEIGHT / 2;
+        x = 50;
+       y = 500;
        this.width = width;
        this.height = height;
     }
