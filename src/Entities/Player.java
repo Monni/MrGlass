@@ -55,26 +55,30 @@ public class Player {
         
         for (int i = 0; i < b.length; i++){
             // - ja + luvuilla säädetään ettei hahmo uppoa palikkaan
-            //right collision
-            if (Collision.playerBlock(new Point(iX + width, iY + 2), b[i]) 
-                    || Collision.playerBlock(new Point(iX + width, iY + height - 1), b[i])) {
+            //right side collision
+            // oikea yläkulma
+            if (Collision.playerBlock(new Point(iX + width, iY - 1), b[i]) 
+                    //oikeia alakulma
+                    || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])) {
                 right = false;
+                System.out.println("RIGHTII");
               }
            
-            //left collision
+            //left side collision
             if(Collision.playerBlock(new Point(iX - 1, iY + 2), b[i])
-                    || Collision.playerBlock(new Point(iX - 1 , iY + height -1),b[i])){
+                    || Collision.playerBlock(new Point(iX - 1 , iY + height -2),b[i])){
                 left = false;
+                System.out.println("LEFTII");
             }
-            // top collision
+            // Pohja
             if(Collision.playerBlock(new Point(iX + 1, iY), b[i])
                     || Collision.playerBlock(new Point( iX + width - 1, iY), b[i])){
             falling = true;
             jumping = false;
             }
-            // bottom collision
-            if(Collision.playerBlock(new Point(iX + 2, iY + height +1), b[i])
-                    || Collision.playerBlock(new Point ( iX + width - 1, iY + height + 1 ), b[i])){
+            // kävelypinta / top
+            if(Collision.playerBlock(new Point(iX + 1, iY + height +2), b[i])
+                    || Collision.playerBlock(new Point ( iX + width - 1, iY + height + 2 ), b[i])){
                  y = b[i].getY() - height;
                 falling = false;
                 topCollision = true;

@@ -116,14 +116,13 @@ public class Level1State extends GameState {
         
         // rappusten alotuis alusta
         
-        b[63] = new Block (660, 680);
-        b[64] = new Block (660, 710);
+        b[63] = new Block (660, 650);
+        b[64] = new Block (660, 680);       
+        b[65] = new Block (660, 710);
         
-        b[65] = new Block (690, 680);
-        b[66] = new Block (690, 710);
-        
-        b[67] = new Block (720, 680);
-        b[68] = new Block (720, 710);
+        b[66] = new Block (690, 650);
+        b[67] = new Block (690, 680);
+        b[68] = new Block (690, 710);
         
         // rappuset
         
@@ -277,30 +276,30 @@ public class Level1State extends GameState {
         
         // maalialusta
         
-        b[189] = new Block (930, 100);
-        b[190] = new Block (930, 130);
-        b[191] = new Block (960, 100);
-        b[192] = new Block (960, 130);
-        b[193] = new Block (990, 100);
-        b[194] = new Block (990, 130);
-        b[195] = new Block (1020, 100);
-        b[196] = new Block (1020, 130);
-        b[197] = new Block (1050, 100);
-        b[198] = new Block (1050, 130);
-        b[199] = new Block (1080, 100);
-        b[200] = new Block (1080, 130);
-        b[201] = new Block (1110, 100);
-        b[202] = new Block (1110, 130);
-        b[203] = new Block (1140, 100);
-        b[204] = new Block (1140, 130);
-        b[205] = new Block (1170, 100);
-        b[206] = new Block (1170, 130);
-        b[207] = new Block (1200, 100);
-        b[208] = new Block (1200, 130);
-        b[209] = new Block (1230, 100);
-        b[210] = new Block (1230, 130);
-        b[211] = new Block (1260, 100);
-        b[212] = new Block (1260, 130);
+        b[189] = new Block (930, 140);
+        b[190] = new Block (930, 170);
+        b[191] = new Block (960, 140);
+        b[192] = new Block (960, 170);
+        b[193] = new Block (990, 140);
+        b[194] = new Block (990, 170);
+        b[195] = new Block (1020, 140);
+        b[196] = new Block (1020, 170);
+        b[197] = new Block (1050, 140);
+        b[198] = new Block (1050, 170);
+        b[199] = new Block (1080, 140);
+        b[200] = new Block (1080, 170);
+        b[201] = new Block (1110, 140);
+        b[202] = new Block (1110, 170);
+        b[203] = new Block (1140, 140);
+        b[204] = new Block (1140, 170);
+        b[205] = new Block (1170, 140);
+        b[206] = new Block (1170, 170);
+        b[207] = new Block (1200, 140);
+        b[208] = new Block (1200, 170);
+        b[209] = new Block (1230, 140);
+        b[210] = new Block (1230, 170);
+        b[211] = new Block (1260, 140);
+        b[212] = new Block (1260, 170);
     }
 
     public void tick() {
