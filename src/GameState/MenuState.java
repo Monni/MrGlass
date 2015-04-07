@@ -43,6 +43,8 @@ public class MenuState extends GameState {
     public void draw(Graphics g) {
         
         // Valikon staattisten kuvien lataus
+        Image menubackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\menubackground.png");
+        g.drawImage(menubackground, 0, 0, null);
         Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\title.png");
         g.drawImage(titleImg, 130, 50, null);
         Image startImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\startgame.png");
