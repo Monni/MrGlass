@@ -24,7 +24,7 @@ public class MenuState extends GameState {
     private String[] options = {"Start", "Credits", "Quit"};
     private int currentSelection = 0;
     private int quitSelection = 0;
-    private int selected = 0;
+    private int selected;
       
     
     
@@ -54,23 +54,37 @@ public class MenuState extends GameState {
         Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitgame.png");
         g.drawImage(quitImg, 780, 580, null);
         
+        Image startSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\startgame_selected.png");
+        Image scoreSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\highscores_selected.png");
+        Image creditsSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\credits_selected.png");
+        Image quitSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitgame_selected.png");
+        
         Image blurredbackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\creditsblurredbackground.png");
         Image authors = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\authors.png");
         Image quitquestion = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitquestion.png");
-        Image quitselector = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitselector.png");
+        Image quitselector = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitselector.gif");
         
                // Start valittu
        if(currentSelection == 0) {
         g.drawImage(getSelecterImg(), 650, 300, null);
-       }       // Credits valittu
+        g.drawImage(getSelecterFlames(), 715, 296, null);
+        g.drawImage(startSelected, 780, 280, null);
+        
+       }       // High scores valittu
        else if(currentSelection == 1) {
            g.drawImage(getSelecterImg(), 650, 400, null);
-       }       // High scores valittu
+           g.drawImage(getSelecterFlames(), 715, 396, null);
+           g.drawImage(scoreSelected, 780, 380, null);
+       }       // Credits valittu
        else if(currentSelection == 2) {
            g.drawImage(getSelecterImg(), 650, 500, null);
+           g.drawImage(getSelecterFlames(), 715, 496, null);
+           g.drawImage(creditsSelected, 780, 480, null);
        }       // Quit valittu
        else if(currentSelection == 3) {
            g.drawImage(getSelecterImg(), 650, 600, null);
+           g.drawImage(getSelecterFlames(), 715, 596, null);
+           g.drawImage(quitSelected, 780, 580, null);
        }       
        
       if ( selected == 2 ) {
@@ -129,16 +143,14 @@ public class MenuState extends GameState {
                 quitSelection = 1;
         }
         
-        if (selected == 3 && k == KeyEvent.VK_ENTER) {
-            if (quitSelection == 0) {
-                System.exit(0);
-            } else {
-                selected = 0;
-            }
-        }
-        
+ 
+                        
         if (k == KeyEvent.VK_ENTER){
-            if(currentSelection == 0 ){
+            if (selected == 3 && quitSelection == 0) {
+                System.exit(0);
+            } else if (selected == 3 && quitSelection == 1) {
+                selected = 0;
+            }else if(currentSelection == 0 ){
                 gsm.states.push(new Level1State(gsm));
                // Start Game
             } else if (currentSelection == 1){
@@ -151,6 +163,10 @@ public class MenuState extends GameState {
                 selected = 3;
             }
         }
+        
+
+                
+                
         if (k == KeyEvent.VK_ESCAPE) {
             if ( selected == 0 ) {
                 selected = 3;
@@ -172,5 +188,9 @@ public class MenuState extends GameState {
           ImageIcon ic = new ImageIcon("src\\resources\\mainmenu\\selector.png");
         return ic.getImage();
     }
+     public Image getSelecterFlames() {
+         ImageIcon ic = new ImageIcon("src\\resources\\mainmenu\\flames.gif");
+         return ic.getImage();
+     }
      
 }
