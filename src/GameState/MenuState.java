@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,6 +23,10 @@ public class MenuState extends GameState {
 
     private String[] options = {"Start", "Credits", "Quit"};
     private int currentSelection = 0;
+    private int quitSelection = 0;
+    private int selected = 0;
+      
+    
     
     public MenuState(GameStateManager gsm) {
         super(gsm);
@@ -48,7 +53,11 @@ public class MenuState extends GameState {
         g.drawImage(creditsImg, 780, 480, null);
         Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitgame.png");
         g.drawImage(quitImg, 780, 580, null);
-       
+        
+        Image blurredbackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\creditsblurredbackground.png");
+        Image authors = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\authors.png");
+        Image quitquestion = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitquestion.png");
+        
                // Start valittu
        if(currentSelection == 0) {
         g.drawImage(getSelecterImg(), 650, 300, null);
@@ -63,7 +72,13 @@ public class MenuState extends GameState {
            g.drawImage(getSelecterImg(), 650, 600, null);
        }       
        
-      
+      if ( selected == 2 ) {
+          g.drawImage(blurredbackground, 0, 0, null);
+          g.drawImage(authors, 440, 250, null);
+      } else if ( selected == 3 ) {
+          g.drawImage(blurredbackground, 0, 0, null);
+          g.drawImage(quitquestion, 440, 250, null);
+      }
        
         /* taustan värjäys
         g.setColor(new Color(50,101,200));
@@ -88,28 +103,59 @@ public class MenuState extends GameState {
 
     
     public void keyPressed(int k) {
-        if(k == KeyEvent.VK_DOWN){
+        if(k == KeyEvent.VK_DOWN && selected == 0 ){
             if(currentSelection < 3) currentSelection++;
             else currentSelection = 0;
             
-        } else if (k == KeyEvent.VK_UP){
+        } else if (k == KeyEvent.VK_UP && selected == 0 ){
             currentSelection--;
             if(currentSelection < 0){
                 currentSelection = 4 - 1;
             }
+        } else if (k == KeyEvent.VK_LEFT && selected == 3 ) {
+            if (quitSelection == 0) 
+                quitSelection = 1;
+            else
+                quitSelection = 0;
+        } else if (k == KeyEvent.VK_RIGHT && selected == 3 ) {
+            if (quitSelection == 1)
+                quitSelection = 0;
+            else
+                quitSelection = 1;
         }
+        
+        if (selected == 3 && k == KeyEvent.VK_ENTER) {
+            if (quitSelection == 0) {
+                System.exit(0);
+            } else {
+                selected = 0;
+            }
+        }
+        
         if (k == KeyEvent.VK_ENTER){
             if(currentSelection == 0 ){
                 gsm.states.push(new Level1State(gsm));
                // Start Game
             } else if (currentSelection == 1){
+               // selected = 1;
                 // High Scores
             }else if (currentSelection == 2){
+                selected = 2;
                 // Credits
             }else if (currentSelection == 3) {
-                System.exit(0);
+                selected = 3;
             }
         }
+        if (k == KeyEvent.VK_ESCAPE) {
+            if ( selected == 0 ) {
+                selected = 3;
+            } else
+            selected = 0;
+        }
+        
+
+        
+        
     }
 
     
