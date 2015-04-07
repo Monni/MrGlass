@@ -8,7 +8,12 @@ package GameState;
 
 import Entities.Player;
 import Objects.Block;
+import Objects.Goal;
+import Objects.Saw;
+import Objects.Spike;
+import Objects.SpikeTurned;
 import java.awt.Graphics;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,7 +23,12 @@ public class Level1State extends GameState {
 
     private Player player;
     
+    
+    private Spike[] p;
+    private SpikeTurned[] pT;
     private Block[] b;
+    private Saw[] s;
+    private Goal[] goal;
     
     
     public Level1State(GameStateManager gsm) {
@@ -29,8 +39,34 @@ public class Level1State extends GameState {
         player = new Player(20,39);
         
         b = new Block[213];
+        s = new Saw[6];
+        goal = new Goal[1];
+        p = new Spike[2];
+        pT = new SpikeTurned[5];
+        
+        //Goal
+        goal[0] = new Goal (1200, 80);
+        
+        //spikes upside down
+        pT[0] = new SpikeTurned(1000, 390);
+        pT[1] = new SpikeTurned(220, 400);
+        pT[2] = new SpikeTurned(320, 400);
+        pT[3] = new SpikeTurned(640, 400);
+        pT[4] = new SpikeTurned(550, 180);
         
         
+        //spikes
+        
+        p[0] = new Spike (260, 690);
+        p[1] = new Spike (550, 560);
+        
+        //saws
+        s[0] = new Saw (150, 620);
+        s[1] = new Saw (370, 310);
+        s[2] = new Saw (260, 310);
+        s[3] = new Saw (150, 310);
+        s[4] = new Saw (1070, 110);
+        s[5] = new Saw (1000, 110);
         // Alaosasto vasemmalta oikealle
         b[0] = new Block (-10, 560);
         b[1] = new Block (-10, 590);
@@ -79,22 +115,22 @@ public class Level1State extends GameState {
         b[36] = new Block (230, 710);
         
         //piikki kuilu
-        b[37] = new Block (260, 710);
+        b[37] = new Block (265, 720); // ulkona näytöltä
         
-        b[38] = new Block (290, 620);
-        b[39] = new Block (290, 650);
-        b[40] = new Block (290, 680);
-        b[41] = new Block (290, 710);
+        b[38] = new Block (300, 620);
+        b[39] = new Block (300, 650);
+        b[40] = new Block (300, 680);
+        b[41] = new Block (300, 710);
         
-        b[42] = new Block (320, 650);
-        b[43] = new Block (320, 680);
-        b[44] = new Block (320, 710);
+        b[42] = new Block (330, 650);
+        b[43] = new Block (330, 680);
+        b[44] = new Block (330, 710);
         
-        b[45] = new Block (350, 650);
-        b[46] = new Block (350, 680);
-        b[47] = new Block (350, 710);
+        b[45] = new Block (360, 650);
+        b[46] = new Block (360, 680);
+        b[47] = new Block (360, 710);
         
-        //ensimmoisen rotkon kohta ( sirkkeli päällä)
+        //ensimmoisen rotkon kohta ( sirkkeli päällä) mallissa
         
         b[48] = new Block (500, 590);
         b[49] = new Block (500, 620);
@@ -303,20 +339,61 @@ public class Level1State extends GameState {
     }
 
     public void tick() {
-        
+        //palikoiden tsekkaus
         for ( int i = 0; i<b.length; i++) {
             b[i].tick();
         }
+        // sahojen tsekkaus
+        for ( int j = 0; j<s.length; j++) {
+            s[j].tick();
+        }
+        //maalin tsekkaus
+        for ( int m = 0; m < goal.length; m++){
+            goal[m].tick();
+        }
+        //piikkien tsekkaus
+        for ( int n = 0; n < p.length; n++){
+            p[n].tick();
+        }
+        //käännettyjen piikkien tsekkaus
+        for ( int vp = 0; vp < pT.length; vp++){
+            pT[vp].tick();
+        }
         
-      player.tick(b);
+      player.tick(b, s, p, pT, goal);
     }
 
     public void draw(Graphics g) {
+        
+        // taustan piirto
+        ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\background\\TaustaMap1.png");
+        g.drawImage(ic.getImage(),0,0,null);
+        
+        //pelaajan piirto
       player.draw(g);  
-    
+      
+    //palikoiden piirto
       for ( int i = 0; i < b.length; i++) {
           b[i].draw(g);
       }
+      
+      //sahojen piirto
+       for ( int j = 0; j < s.length; j++) {
+          s[j].draw(g);
+      }
+       //maalin piirto
+         for ( int m = 0; m < goal.length; m++){
+            goal[m].draw(g);
+        }
+         // piikkien piirto
+         for ( int n = 0; n < p.length; n++){
+            p[n].draw(g);
+            
+            // väärinpäin piikkien piirto
+        }
+         for ( int vp = 0; vp < pT.length; vp++){
+            pT[vp].draw(g);
+         }
     }
 
     public void keyPressed(int k) {

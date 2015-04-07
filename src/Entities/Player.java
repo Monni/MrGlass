@@ -6,8 +6,11 @@
 package Entities;
 
 import Collision.Collision;
-import Game.GamePanel;
 import Objects.Block;
+import Objects.Goal;
+import Objects.Saw;
+import Objects.Spike;
+import Objects.SpikeTurned;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
@@ -48,12 +51,13 @@ public class Player {
        this.width = width;
        this.height = height;
     }
-    public void tick(Block[] b) {
+    public void tick(Block[] b, Saw[] s, Spike[] p, SpikeTurned[] pT, Goal[] goal) {
         int iX = (int)x;
         int iY = (int)y;
         
         
         for (int i = 0; i < b.length; i++){
+            //ground collsion
             // - ja + luvuilla säädetään ettei hahmo uppoa palikkaan
             //right side collision
             // oikea yläkulma
@@ -85,9 +89,85 @@ public class Player {
             } else {
                 if (!topCollision && !jumping) {
                 falling = true;
-              }
+                  }
+              }    
             }
+        
+        // sahojen collision
+        for (int j = 0; j < s.length; j++){
+            if (Collision.playerSaw(new Point(iX + width-5, iY - 15 ), s[j]) 
+                    //oikeia alakulma
+                    || Collision.playerSaw(new Point(iX + width-5, iY + height - 15 ), s[j])) {
+                
+                System.out.println("SAHA RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+              }
+           
+            //left side collision
+       //     vasen yläkulma
+            if(Collision.playerSaw(new Point(iX - 10 , iY -15), s[j])         
+                    //vasen alakulma
+                    || Collision.playerSaw(new Point(iX +3 , iY + height-15 ),s[j])){
+                
+                System.out.println("SAHA LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+        }
+            if(Collision.playerSaw(new Point(iX +5, iY + height-15), s[j])
+                    || Collision.playerSaw(new Point ( iX + width -5, iY + height-15 ), s[j])){
+                System.out.println("SAHA TOP");// tähän mitä tapahtuu kun pelaaja kuolee
+            }
+        }
+        
+        //piikkien collision
+        for (int n = 0; n < p.length; n++){
             
+            if (Collision.playerSpike(new Point(iX + width-5, iY - 15), p[n]) 
+                    //oikeia alakulma
+                    || Collision.playerSpike(new Point(iX + width-5, iY + height - 15), p[n])) {
+                
+                System.out.println("Spike RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+              }
+           
+            //left side collision
+            if(Collision.playerSpike(new Point(iX + 5, iY -15 ), p[n])
+                    || Collision.playerSpike(new Point(iX + 3 , iY + height -15),p[n])){
+                
+                System.out.println("Spike LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+        }
+             if(Collision.playerSpike(new Point(iX +8, iY + height), p[n])
+                    || Collision.playerSpike(new Point ( iX + width - 15, iY + height ), p[n])){
+                System.out.println("Spike TOP");// tähän mitä tapahtuu kun pelaaja kuolee
+            }
+        }
+        
+        //käännettyjen piikkien collision
+        for (int t = 0; t < pT.length; t++){
+            
+            if (Collision.playerSpikeTurned(new Point(iX + width-5, iY- 0), pT[t]) 
+                    //oikeia alakulma
+                    || Collision.playerSpikeTurned(new Point(iX + width-7, iY + height - 0), pT[t])) {
+                
+                System.out.println("SpikeTurned RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+              }
+           
+            //left side collision
+            if(Collision.playerSpikeTurned(new Point(iX + 5, iY -0 ), pT[t])
+                    || Collision.playerSpikeTurned(new Point(iX + 7 , iY + height -0),pT[t])){
+                
+                System.out.println("SpikeTurned LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+        }
+             if(Collision.playerSpikeTurned(new Point(iX +7, iY), pT[t])
+                    || Collision.playerSpikeTurned(new Point( iX + width - 7, iY), pT[t])){
+                 System.out.println("SpikeTurned BOT");// tähän mitä tapahtuu kun pelaaja kuolee
+             }
+        }
+        
+        //maalin collision
+        for (int h = 0; h < goal.length; h++){
+            
+            if (Collision.playerGoal(new Point(iX + width-10, iY- 15), goal[h])){ 
+                    
+                
+                System.out.println("Maali RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+              }
         }
         
         topCollision = false;
