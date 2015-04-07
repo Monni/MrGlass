@@ -57,6 +57,7 @@ public class MenuState extends GameState {
         Image blurredbackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\creditsblurredbackground.png");
         Image authors = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\authors.png");
         Image quitquestion = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitquestion.png");
+        Image quitselector = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitselector.png");
         
                // Start valittu
        if(currentSelection == 0) {
@@ -78,6 +79,10 @@ public class MenuState extends GameState {
       } else if ( selected == 3 ) {
           g.drawImage(blurredbackground, 0, 0, null);
           g.drawImage(quitquestion, 440, 250, null);
+          if ( quitSelection == 0 )
+              g.drawImage(quitselector, 520, 370, null);
+          else if ( quitSelection == 1 )
+              g.drawImage(quitselector, 665, 370, null);
       }
        
         /* taustan värjäys
