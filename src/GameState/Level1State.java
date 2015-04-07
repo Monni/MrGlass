@@ -36,7 +36,7 @@ public class Level1State extends GameState {
     }
 
     public void init() {
-        player = new Player(20,39);
+        player = new Player(18,39);
         
         b = new Block[213];
         s = new Saw[6];
