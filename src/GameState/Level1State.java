@@ -8,7 +8,10 @@ package GameState;
 
 import Entities.Player;
 import Objects.Block;
+import Objects.Cannon;
+import Objects.CannonBallLeft;
 import Objects.Goal;
+import Objects.MovingSaw;
 import Objects.Saw;
 import Objects.Spike;
 import Objects.SpikeTurned;
@@ -29,6 +32,9 @@ public class Level1State extends GameState {
     private Block[] b;
     private Saw[] s;
     private Goal[] goal;
+    private MovingSaw[] ms;
+    private Cannon[] c;
+    private CannonBallLeft[] cbl;
     
     
     public Level1State(GameStateManager gsm) {
@@ -43,9 +49,23 @@ public class Level1State extends GameState {
         goal = new Goal[1];
         p = new Spike[2];
         pT = new SpikeTurned[5];
+        ms = new MovingSaw[2];
+        c = new Cannon[1];
+        cbl = new CannonBallLeft[1];
+        
+        
+        //Cannon
+        c[0] = new Cannon (745, 95);
+        
+        //Cannonballs
+        cbl[0] = new CannonBallLeft (745, 95, -50  );
         
         //Goal
         goal[0] = new Goal (1200, 80);
+        
+        //moving saw
+        ms[0] = new MovingSaw (150,620, 80, 230 );
+        ms[1] = new MovingSaw (170, 310, 150, 470 );
         
         //spikes upside down
         pT[0] = new SpikeTurned(1000, 390);
@@ -344,23 +364,34 @@ public class Level1State extends GameState {
             b[i].tick();
         }
         // sahojen tsekkaus
-        for ( int j = 0; j<s.length; j++) {
-            s[j].tick();
+        for ( int i = 0; i<s.length; i++) {
+            s[i].tick();
         }
         //maalin tsekkaus
-        for ( int m = 0; m < goal.length; m++){
-            goal[m].tick();
+        for ( int i = 0; i < goal.length; i++){
+            goal[i].tick();
         }
         //piikkien tsekkaus
-        for ( int n = 0; n < p.length; n++){
-            p[n].tick();
+        for ( int i = 0; i < p.length; i++){
+            p[i].tick();
         }
         //käännettyjen piikkien tsekkaus
-        for ( int vp = 0; vp < pT.length; vp++){
-            pT[vp].tick();
+        for ( int i = 0; i < pT.length; i++){
+            pT[i].tick();
         }
-        
-      player.tick(b, s, p, pT, goal);
+        //moving saw
+        for ( int i = 0; i < ms.length; i++){
+            ms[i].tick();
+        }
+        //cannon
+        for ( int i = 0; i < c.length; i++){
+            c[i].tick();
+        }
+        //cannonBALL LEFT
+        for ( int i = 0; i < cbl.length; i++){
+            cbl[i].tick();
+        }
+      player.tick(b, s, p, pT, goal, ms, c, cbl);
     }
 
     public void draw(Graphics g) {
@@ -378,22 +409,34 @@ public class Level1State extends GameState {
       }
       
       //sahojen piirto
-       for ( int j = 0; j < s.length; j++) {
-          s[j].draw(g);
+       for ( int i = 0; i < s.length; i++) {
+          s[i].draw(g);
       }
        //maalin piirto
-         for ( int m = 0; m < goal.length; m++){
-            goal[m].draw(g);
+         for ( int i = 0; i < goal.length; i++){
+            goal[i].draw(g);
         }
          // piikkien piirto
-         for ( int n = 0; n < p.length; n++){
-            p[n].draw(g);
+         for ( int i = 0; i < p.length; i++){
+            p[i].draw(g);
             
             // väärinpäin piikkien piirto
         }
-         for ( int vp = 0; vp < pT.length; vp++){
-            pT[vp].draw(g);
+         for ( int i = 0; i < pT.length; i++){
+            pT[i].draw(g);
          }
+         //moving saw
+         for ( int i = 0; i < ms.length; i++){
+            ms[i].draw(g);
+        }
+        //cannon
+         for ( int i = 0; i < c.length; i++){
+            c[i].draw(g);
+        }
+         //cannonballLEFT
+         for ( int i = 0; i < cbl.length; i++){
+            cbl[i].draw(g);
+        }
     }
 
     public void keyPressed(int k) {

@@ -14,16 +14,17 @@ import javax.swing.ImageIcon;
  *
  * @author Nissinen
  */
-public class Saw extends Rectangle {
-    public Saw (int x, int y) {
-        setBounds(x, y, 70, 30);
+public class Cannon extends Rectangle {
+    
+   public Cannon (int x, int y) {
+        setBounds(x, y, 35, 25);
     }
     
      public void tick(){
      
     }
     public Image getSaw(){
-          ImageIcon saw = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\Saw.png");
+          ImageIcon saw = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\Cannon.png");
         return saw.getImage();
     }
 

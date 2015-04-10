@@ -6,7 +6,10 @@
 package Collision;
 
 import Objects.Block;
+import Objects.Cannon;
+import Objects.CannonBallLeft;
 import Objects.Goal;
+import Objects.MovingSaw;
 import Objects.Saw;
 import Objects.Spike;
 import Objects.SpikeTurned;
@@ -37,4 +40,13 @@ public class Collision {
       public static boolean playerGoal(Point p, Goal goal){
             return goal.contains(p);
     }
+      public static boolean playerMovingSaw(Point p, MovingSaw ms){
+            return ms.contains(p);
+    }
+      public static boolean playerCannon(Point p, Cannon c){
+          return c.contains(p);
+      }
+      public static boolean playerCannonBallLeft(Point p, CannonBallLeft cbl){
+          return cbl.contains(p);
+      }
 }
