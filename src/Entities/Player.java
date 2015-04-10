@@ -49,8 +49,8 @@ public class Player {
     private boolean lastRight = true;
     
     public Player( int width, int height) {
-        x = 50;
-       y = 100;
+        x = 550;
+       y = 50;
        this.width = width;
        this.height = height;
     }
@@ -60,12 +60,10 @@ public class Player {
         
         
         for (int i = 0; i < b.length; i++){
-            //ground collsion
-            // - ja + luvuilla säädetään ettei hahmo uppoa palikkaan
-            //right side collision
-            // oikea yläkulma
+            //ground collision
+
             if (Collision.playerBlock(new Point(iX + width, iY - 1), b[i]) 
-                    //oikeia alakulma
+                    
                     || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])) {
                 right = false;
                 System.out.println("RIGHTII");
@@ -197,10 +195,7 @@ public class Player {
         }
         //CANNON COLLISION
          for (int i = 0; i < c.length; i++){
-            //ground collsion
-            // - ja + luvuilla säädetään ettei hahmo uppoa palikkaan
-            //right side collision
-            // oikea yläkulma
+
             if (Collision.playerCannon(new Point(iX + width, iY - 1), c[i]) 
                     //oikeia alakulma
                     || Collision.playerCannon(new Point(iX + width, iY + height - 2), c[i])) {
@@ -229,19 +224,16 @@ public class Player {
          
          //CANNONBALLLEFT COLLISION
          for (int i = 0; i < cbl.length; i++){
-            //ground collsion
-            // - ja + luvuilla säädetään ettei hahmo uppoa palikkaan
-            //right side collision
-            // oikea yläkulma
-            if (Collision.playerCannonBallLeft(new Point(iX + width, iY - 1), cbl[i]) 
-                    //oikeia alakulma
-                    || Collision.playerCannonBallLeft(new Point(iX + width, iY + height - 2), cbl[i])) {
+
+             if (Collision.playerCannonBallLeft(new Point(iX + width - 15, iY + 25), cbl[i]))
+                     {
                 System.out.println("CANNONBALL RIGHT");
-              }
-           
+             }
+             
             //left side collision
-            if(Collision.playerCannonBallLeft(new Point(iX - 1, iY + 2), cbl[i])
-                    || Collision.playerCannonBallLeft(new Point(iX - 1 , iY + height -2),cbl[i])){
+            if(Collision.playerCannonBallLeft(new Point(iX+ 15 , iY ), cbl[i])
+                    || Collision.playerCannonBallLeft(new Point(iX +15 , iY + height - 0 ),cbl[i]))
+                    {
                 System.out.println("CANNONBALL LEFT");
             }
         }
