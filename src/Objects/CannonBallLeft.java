@@ -26,6 +26,7 @@ public class CannonBallLeft extends Rectangle {
     public CannonBallLeft (int x, int y, int leftBound) {
         setBounds(x, y, 15, 15);
         
+ 
         this.leftBound = leftBound;
         StartX = x;
     }
@@ -40,8 +41,8 @@ public class CannonBallLeft extends Rectangle {
             x-=speed;
     }
     public Image getMovingSaw(){
-          ImageIcon saw = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\CannonBall.png");
-        return saw.getImage();
+        ImageIcon can = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\CannonBall.png");
+        return can.getImage();
     }
 
     public int getMove(){
