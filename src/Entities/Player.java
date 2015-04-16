@@ -275,27 +275,25 @@ public class Player {
     
     
     public void draw(Graphics g) {
-       // If moving or last moved to right
-       if(lastRight) {
+       // If last moved to right
+       if(lastRight && right == false) {
         g.drawImage(getPlayerImgRight(),(int) x,(int) y, null);
        }
-       
-       // If moving or last moved to left
-       else if (lastLeft) {
+       // If moving to right
+       else if ( right == true ) {
+           g.drawImage(getPlayerImgRightRunning(), (int) x, (int) y, null);
+       }
+       // If last moved to left
+       else if (lastLeft && left == false) {
         g.drawImage(getPlayerImgLeft(), (int) x, (int) y, null);
+       }
+       // If moving to left
+       else if ( left == true ) {
+           g.drawImage(getPlayerImgLeftRunning(), (int) x, (int) y, null);
        }
        
     }
     
-    public Image getPlayerImgRight(){
-          ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_right.png");
-        return ic.getImage();
-    }
-    
-    public Image getPlayerImgLeft() {
-        ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\glassman\\glassman_left.png");
-        return ic.getImage();
-    }
     
     public void keyPressed(int k) {
         if ( k == KeyEvent.VK_RIGHT) right = true;
@@ -306,6 +304,26 @@ public class Player {
     public void keyReleased(int k) {
         if ( k == KeyEvent.VK_RIGHT) right = false;
         if ( k == KeyEvent.VK_LEFT) left = false;
+    }
+    
+        public Image getPlayerImgRight(){
+          ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_right.gif");
+        return ic.getImage();
+    }
+    
+    public Image getPlayerImgLeft() {
+        ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_left.gif");
+        return ic.getImage();
+    }
+    
+    public Image getPlayerImgRightRunning() {
+        ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_right_running.gif");
+        return ic.getImage();
+    }
+    
+    public Image getPlayerImgLeftRunning() {
+        ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_left_running.gif");
+        return ic.getImage();
     }
     
 }
