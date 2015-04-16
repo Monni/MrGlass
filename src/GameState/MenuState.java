@@ -14,6 +14,9 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import java.awt.MediaTracker;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +28,8 @@ public class MenuState extends GameState {
     private int currentSelection = 0;
     private int quitSelection = 0;
     private int selected;
-      
+    private MediaTracker tracker;
+    
     
     
     public MenuState(GameStateManager gsm) {
@@ -42,20 +46,17 @@ public class MenuState extends GameState {
 
     public void draw(Graphics g) {
         
-        // Valikon staattisten kuvien lataus
-        Image menubackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\menubackground.png");
-        g.drawImage(menubackground, 0, 0, null);
-        Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\title.png");
-        g.drawImage(titleImg, 130, 50, null);
-        Image startImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\startgame.png");
-        g.drawImage(startImg, 780, 280, null);
-        Image scoreImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\highscores.png");
-        g.drawImage(scoreImg, 780, 380, null);
-        Image creditsImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\credits.png");
-        g.drawImage(creditsImg, 780, 480, null);
-        Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitgame.png");
-        g.drawImage(quitImg, 780, 580, null);
+// MediaTracker
+        tracker = new MediaTracker(this);
         
+// Valikon median lataus
+        Image menubackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\menubackground.png");
+        Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\title.png");
+        Image startImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\startgame.png");
+        Image scoreImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\highscores.png");
+        Image creditsImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\credits.png");
+        Image quitImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitgame.png");
+
         Image startSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\startgame_selected.png");
         Image scoreSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\highscores_selected.png");
         Image creditsSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\credits_selected.png");
@@ -65,6 +66,36 @@ public class MenuState extends GameState {
         Image authors = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\authors.png");
         Image quitquestion = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitquestion.png");
         Image quitselector = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitselector.gif");
+        
+        tracker.addImage(menubackground, 0);
+        tracker.addImage(titleImg, 1);
+        tracker.addImage(scoreImg, 2);
+        tracker.addImage(creditsImg, 3);
+        tracker.addImage(quitImg, 4);
+        
+        tracker.addImage(startSelected, 5);
+        tracker.addImage(scoreSelected, 6);
+        tracker.addImage(creditsSelected, 7);
+        tracker.addImage(quitSelected, 8);
+        
+        tracker.addImage(blurredbackground, 7);
+        tracker.addImage(authors, 8);
+        tracker.addImage(quitquestion, 9);
+        tracker.addImage(quitselector, 10);
+        
+        try {
+            tracker.waitForAll();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        g.drawImage(menubackground, 0, 0, null);
+        g.drawImage(titleImg, 130, 50, null);
+        g.drawImage(startImg, 780, 280, null);
+        g.drawImage(scoreImg, 780, 380, null);
+        g.drawImage(creditsImg, 780, 480, null);
+        g.drawImage(quitImg, 780, 580, null);
         
                // Start valittu
        if(currentSelection == 0) {

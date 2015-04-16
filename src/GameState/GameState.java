@@ -5,13 +5,15 @@
  */
 package GameState;
 
+import java.applet.Applet;
 import java.awt.Graphics;
+import java.awt.MediaTracker;
 
 /**
  *
  * @author Nissinen
  */
-public abstract class GameState {
+public abstract class GameState extends Applet {
     
     protected GameStateManager gsm;
     
