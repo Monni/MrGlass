@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class MenuState extends GameState {
 
-    private String[] options = {"Start", "Credits", "Quit"};
+   
     private int currentSelection = 0;
     private int quitSelection = 0;
     private int selected;
@@ -132,25 +132,7 @@ public class MenuState extends GameState {
               g.drawImage(quitselector, 665, 370, null);
       }
        
-        /* taustan värjäys
-        g.setColor(new Color(50,101,200));
-        g.fillRect(0,0,GamePanel.WIDTH, GamePanel.HEIGHT);
-        */
-       /*
-        for (int i = 0; i < options.length; i++) {
-            if (i == currentSelection) {
-                g.setColor(Color.RED);                
-            }
-            else {
-                g.setColor(Color.BLACK);
-            }
-            
-        // keskikohdan tsekkaus    g.drawLine(GamePanel.WIDTH / 2, 0, GamePanel.WIDTH / 2 , GamePanel.HEIGHT );
-            g.setFont(new Font("Arial", Font.PLAIN, 72));
-            // asettelee valikon tekstit
-            g.drawString(options[i], GamePanel.WIDTH / 2 - 100, 230 + i * 150);
-        }
-               */
+
     }
 
     

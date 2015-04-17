@@ -94,6 +94,12 @@ public class Player {
               }    
             }
         
+        
+        
+        /*
+        ** Object collision
+        */
+        
         // sahojen collision
         for (int i = 0; i < s.length; i++){
             if (Collision.playerSaw(new Point(iX + width-5, iY - 15 ), s[i]) 
@@ -241,6 +247,7 @@ public class Player {
                      {
                 System.out.println("CANNONBALL RIGHT");
                 jumping = true;
+                
              }
              
             //left side collision

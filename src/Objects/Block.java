@@ -18,9 +18,9 @@ public class Block extends Rectangle {
     
     private int style;
     
-    private static final long serialVersionUID = 1L;
     
-    public static final int blockSize = 30;
+    
+    private static final int blockSize = 30;
     
     public Block (int x, int y, int style) {
         
