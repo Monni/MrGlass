@@ -101,6 +101,7 @@ public class Player {
                     || Collision.playerSaw(new Point(iX + width-5, iY + height - 15 ), s[i])) {
                 
                 System.out.println("SAHA RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
               }
            
             //left side collision
@@ -110,10 +111,12 @@ public class Player {
                     || Collision.playerSaw(new Point(iX +3 , iY + height-15 ),s[i])){
                 
                 System.out.println("SAHA LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
         }
             if(Collision.playerSaw(new Point(iX +5, iY + height-15), s[i])
                     || Collision.playerSaw(new Point ( iX + width -5, iY + height-15 ), s[i])){
                 System.out.println("SAHA TOP");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
             }
         }
         
@@ -124,6 +127,7 @@ public class Player {
                     || Collision.playerMovingSaw(new Point(iX + width-5, iY + height - 15 ), ms[i])) {
                 
                 System.out.println("LIIKKUVASAHA RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
               }
            
             //left side collision
@@ -133,10 +137,12 @@ public class Player {
                     || Collision.playerMovingSaw(new Point(iX +3 , iY + height-15 ),ms[i])){
                 
                 System.out.println("LIIKKUVASAHA LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
         }
             if(Collision.playerMovingSaw(new Point(iX +5, iY + height-15), ms[i])
                     || Collision.playerMovingSaw(new Point ( iX + width -5, iY + height-15 ), ms[i])){
                 System.out.println("LIIKKUVASAHA TOP");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
             }
         }
         
@@ -148,6 +154,7 @@ public class Player {
                     || Collision.playerSpike(new Point(iX + width-5, iY + height - 15), p[i])) {
                 
                 System.out.println("Spike RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
               }
            
             //left side collision
@@ -155,10 +162,12 @@ public class Player {
                     || Collision.playerSpike(new Point(iX + 3 , iY + height -15),p[i])){
                 
                 System.out.println("Spike LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
         }
              if(Collision.playerSpike(new Point(iX +8, iY + height), p[i])
                     || Collision.playerSpike(new Point ( iX + width - 15, iY + height ), p[i])){
                 System.out.println("Spike TOP");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
             }
         }
         
@@ -170,6 +179,7 @@ public class Player {
                     || Collision.playerSpikeTurned(new Point(iX + width-7, iY + height - 0), pT[i])) {
                 
                 System.out.println("SpikeTurned RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
               }
            
             //left side collision
@@ -177,10 +187,12 @@ public class Player {
                     || Collision.playerSpikeTurned(new Point(iX + 7 , iY + height -0),pT[i])){
                 
                 System.out.println("SpikeTurned LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
         }
              if(Collision.playerSpikeTurned(new Point(iX +7, iY), pT[i])
                     || Collision.playerSpikeTurned(new Point( iX + width - 7, iY), pT[i])){
                  System.out.println("SpikeTurned BOT");// tähän mitä tapahtuu kun pelaaja kuolee
+                 jumping = true;
              }
         }
         
@@ -228,6 +240,7 @@ public class Player {
              if (Collision.playerCannonBallLeft(new Point(iX + width - 15, iY + 25), cbl[i]))
                      {
                 System.out.println("CANNONBALL RIGHT");
+                jumping = true;
              }
              
             //left side collision
@@ -235,6 +248,7 @@ public class Player {
                     || Collision.playerCannonBallLeft(new Point(iX +15 , iY + height - 0 ),cbl[i]))
                     {
                 System.out.println("CANNONBALL LEFT");
+                jumping = true;
             }
         }
         
