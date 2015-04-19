@@ -23,7 +23,7 @@ public class Saw extends Rectangle {
      
     }
     public Image getSaw(){
-          ImageIcon saw = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\Saw.png");
+          ImageIcon saw = new ImageIcon("src\\resources\\objects\\saw.gif");
         return saw.getImage();
     }
 

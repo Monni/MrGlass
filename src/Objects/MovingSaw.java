@@ -40,7 +40,7 @@ public class MovingSaw extends Rectangle {
             x+=speed;
     }
     public Image getMovingSaw(){
-          ImageIcon saw = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\saw.png");
+          ImageIcon saw = new ImageIcon("src\\resources\\objects\\saw.gif");
         return saw.getImage();
     }
 
