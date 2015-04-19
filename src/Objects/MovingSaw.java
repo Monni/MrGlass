@@ -39,8 +39,13 @@ public class MovingSaw extends Rectangle {
             
             x+=speed;
     }
-    public Image getMovingSaw(){
+    public Image getMovingSawRight(){
           ImageIcon saw = new ImageIcon("src\\resources\\objects\\saw.gif");
+        return saw.getImage();
+    }
+    
+    public Image getMovingSawLeft() {
+        ImageIcon saw = new ImageIcon("src\\resources\\objects\\sawleft.gif");
         return saw.getImage();
     }
 
@@ -49,6 +54,10 @@ public class MovingSaw extends Rectangle {
     }
     
     public void draw (Graphics g) {
-         g.drawImage(getMovingSaw(), (int) x, (int) y, null);
+        if (speed <= 0) {
+         g.drawImage(getMovingSawLeft(), (int) x, (int) y, null);
+    } else {
+            g.drawImage(getMovingSawRight(), (int) x, (int) y, null);
+        }
     }
 }
