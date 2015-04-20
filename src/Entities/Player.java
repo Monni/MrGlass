@@ -79,7 +79,7 @@ public class Player {
         
         for (int i = 0; i < b.length; i++){
             //ground collision
-
+if ( shattered == false) {
             if (Collision.playerBlock(new Point(iX + width, iY - 1), b[i]) 
                     
                     || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])) {
@@ -109,7 +109,8 @@ public class Player {
                 if (!topCollision && !jumping) {
                 falling = true;
                   }
-              }    
+              }  
+}
             }
         
         
