@@ -17,6 +17,7 @@ import Objects.SpikeTurned;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -25,8 +26,22 @@ import javax.swing.ImageIcon;
  * @author Nissinen
  */
 public class Player {
+
+ 
     
        private double moveSpeed = 2.5;
+       Image shatteredImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\shattered.png");
+       Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
+              
+    // if killed
+       private boolean shattered = false;
+       private int shatteredtimer = 0;
+       private int retryselector = 0;
+       
+       // Score
+       private int startscore = 10000;
+       private int scoretimer;
+       private int currentscore;
     
     //bounds
    private double x, y;
@@ -57,6 +72,8 @@ public class Player {
     public void tick(Block[] b, Saw[] s, Spike[] p, SpikeTurned[] pT, Goal[] goal, MovingSaw[] ms, Cannon[] c, CannonBallLeft[] cbl) {
         int iX = (int)x;
         int iY = (int)y;
+        
+        scoretimer++;
         
         
         for (int i = 0; i < b.length; i++){
@@ -108,6 +125,7 @@ public class Player {
                 
                 System.out.println("SAHA RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
               }
            
             //left side collision
@@ -118,11 +136,13 @@ public class Player {
                 
                 System.out.println("SAHA LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
         }
             if(Collision.playerSaw(new Point(iX +5, iY + height-15), s[i])
                     || Collision.playerSaw(new Point ( iX + width -5, iY + height-15 ), s[i])){
                 System.out.println("SAHA TOP");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
             }
         }
         
@@ -134,6 +154,7 @@ public class Player {
                 
                 System.out.println("LIIKKUVASAHA RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
               }
            
             //left side collision
@@ -144,11 +165,13 @@ public class Player {
                 
                 System.out.println("LIIKKUVASAHA LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
         }
             if(Collision.playerMovingSaw(new Point(iX +5, iY + height-15), ms[i])
                     || Collision.playerMovingSaw(new Point ( iX + width -5, iY + height-15 ), ms[i])){
                 System.out.println("LIIKKUVASAHA TOP");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
             }
         }
         
@@ -161,6 +184,7 @@ public class Player {
                 
                 System.out.println("Spike RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
               }
            
             //left side collision
@@ -169,11 +193,13 @@ public class Player {
                 
                 System.out.println("Spike LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
         }
              if(Collision.playerSpike(new Point(iX +8, iY + height), p[i])
                     || Collision.playerSpike(new Point ( iX + width - 15, iY + height ), p[i])){
                 System.out.println("Spike TOP");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
             }
         }
         
@@ -186,6 +212,7 @@ public class Player {
                 
                 System.out.println("SpikeTurned RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
               }
            
             //left side collision
@@ -194,11 +221,13 @@ public class Player {
                 
                 System.out.println("SpikeTurned LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
+                shattered = true;
         }
              if(Collision.playerSpikeTurned(new Point(iX +7, iY), pT[i])
                     || Collision.playerSpikeTurned(new Point( iX + width - 7, iY), pT[i])){
                  System.out.println("SpikeTurned BOT");// tähän mitä tapahtuu kun pelaaja kuolee
                  jumping = true;
+                 shattered = true;
              }
         }
         
@@ -208,7 +237,7 @@ public class Player {
             if (Collision.playerGoal(new Point(iX + width-10, iY- 15), goal[i])){ 
                     
                 
-                System.out.println("Maali RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+                System.out.println("Maali RIGHTII");// tähän mitä tapahtuu kun pelaaja pääsee maaliin
               }
         }
         //CANNON COLLISION
@@ -247,6 +276,7 @@ public class Player {
                      {
                 System.out.println("CANNONBALL RIGHT");
                 jumping = true;
+                shattered = true;
                 
              }
              
@@ -256,6 +286,7 @@ public class Player {
                     {
                 System.out.println("CANNONBALL LEFT");
                 jumping = true;
+                shattered = true;
             }
         }
         
@@ -312,14 +343,29 @@ public class Player {
        else if ( left == true ) {
            g.drawImage(getPlayerImgLeftRunning(), (int) x, (int) y, null);
        }
-       
     }
     
     
     public void keyPressed(int k) {
-        if ( k == KeyEvent.VK_RIGHT) right = true;
-        if ( k == KeyEvent.VK_LEFT) left = true;
+        if ( k == KeyEvent.VK_RIGHT) {
+            right = true;
+            if ( retryselector == 1 ) retryselector = 0;
+            else    retryselector = 1;
+        }
+        if ( k == KeyEvent.VK_LEFT) {
+            left = true;
+            if (retryselector == 0) retryselector = 1;
+            else    retryselector = 0;
+        }
         if ( k == KeyEvent.VK_SPACE && !jumping && !falling) jumping = true;
+        
+        if ( k == KeyEvent.VK_ENTER && shattered ) {
+            if ( retryselector == 0 ) {
+                System.out.println("UUSIKSI");
+            } else {
+                System.out.println("MENUUN");
+            }
+        }
     }
     
     public void keyReleased(int k) {
@@ -346,5 +392,20 @@ public class Player {
         ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_left_running.gif");
         return ic.getImage();
     }
+ 
+    
+    public boolean getShatteredBoolean() {
+        return shattered;
+    }
+    
+    public int getRetrySelector() {
+        return retryselector;
+    }
+    
+    public int getCurrentScore() {
+        currentscore = startscore - (scoretimer / 10);
+        return currentscore;
+    }
+    
     
 }

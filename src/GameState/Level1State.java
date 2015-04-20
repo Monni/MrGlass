@@ -16,6 +16,9 @@ import Objects.Saw;
 import Objects.Spike;
 import Objects.SpikeTurned;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
 /**
@@ -23,9 +26,17 @@ import javax.swing.ImageIcon;
  * @author Nissinen
  */
 public class Level1State extends GameState {
-
-    private Player player;
     
+
+    private final Image shatteredMenu = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\shattered.png");
+    private final Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
+    
+    private Player player;
+    private boolean shattered;
+    private int retryselector;
+    private int currentscore;
+    
+    private int testi = 0;
     
     private Spike[] p;
     private SpikeTurned[] pT;
@@ -392,6 +403,19 @@ public class Level1State extends GameState {
             cbl[i].tick();
         }
       player.tick(b, s, p, pT, goal, ms, c, cbl);
+      
+      
+      // Haetaan pelaajan tila, retryn tila, pisteet
+      shattered = player.getShatteredBoolean();
+      retryselector = player.getRetrySelector();
+      currentscore = player.getCurrentScore();
+      
+      
+      
+      
+        System.out.println(currentscore);
+      
+      
     }
 
     public void draw(Graphics g) {
@@ -437,10 +461,25 @@ public class Level1State extends GameState {
          for ( int i = 0; i < cbl.length; i++){
             cbl[i].draw(g);
         }
+         
+                     // kuoleman korjatessa
+        
+        if ( shattered ) {
+            g.drawImage(shatteredMenu, 440, 250, this);
+            if ( retryselector == 0 )
+               g.drawImage(selectorImg, 462, 381, null);
+           else if ( retryselector == 1 )
+               g.drawImage(selectorImg, 627, 381, null);
+        }
+         
     }
 
     public void keyPressed(int k) {
      player.keyPressed(k);
+     if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 1 )
+         gsm.states.push(new MenuState(gsm));
+     else if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 0 )
+         gsm.states.push(new Level1State(gsm));
     }
 
     public void keyReleased(int k) {
