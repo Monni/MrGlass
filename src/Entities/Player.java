@@ -42,6 +42,7 @@ public class Player {
        private int startscore = 10000;
        private int scoretimer;
        private int currentscore;
+       private boolean finished = false;
     
     //bounds
    private double x, y;
@@ -238,6 +239,7 @@ public class Player {
                     
                 
                 System.out.println("Maali RIGHTII");// tähän mitä tapahtuu kun pelaaja pääsee maaliin
+                finished = true;
               }
         }
         //CANNON COLLISION
@@ -403,7 +405,13 @@ public class Player {
     }
     
     public int getCurrentScore() {
-        currentscore = startscore - (scoretimer / 10);
+        if ( shattered == false && finished == false ) {
+            currentscore = startscore - (scoretimer / 10);
+        } else if ( shattered == false && finished ) {
+            currentscore = currentscore;
+        } else {
+            currentscore = 0;
+        }
         return currentscore;
     }
     
