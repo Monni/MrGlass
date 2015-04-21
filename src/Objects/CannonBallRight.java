@@ -15,37 +15,41 @@ import static javax.swing.Spring.width;
  *
  * @author Nissinen
  */
-public class CannonBallLeft extends Rectangle {
+public class CannonBallRight extends Rectangle {
     
  
-    private int leftBound;
+    private int rightBound;
     private int speed = 4;
     private int StartX;
  
     
-    public CannonBallLeft (int x, int y, int leftBound) {
+    public CannonBallRight (int x, int y, int rightBound) {
         setBounds(x, y, 15, 15);
         
  
-        this.leftBound = leftBound;
+        this.rightBound = rightBound;
         StartX = x;
     }
     
      public void tick(){
             
             
-            if(x <= leftBound ){
+            if( x + width >= rightBound && speed !=-1 ){
                 x = StartX;
             }
             
-            x-=speed;
+            x+=speed;
     }
-    public Image getMovingCannonBallLeft(){
+    public Image getMovingCannonBallRight(){
         ImageIcon can = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\CannonBall.png");
         return can.getImage();
     }
+
+    public int getMove(){
+        return speed;
+    }
     
     public void draw (Graphics g) {
-         g.drawImage(getMovingCannonBallLeft(), (int) x, (int) y, null);
+         g.drawImage(getMovingCannonBallRight(), (int) x, (int) y, null);
     }
 }
