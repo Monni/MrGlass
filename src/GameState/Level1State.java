@@ -66,7 +66,7 @@ public class Level1State extends GameState {
         
         
         //Cannon
-        c[0] = new Cannon (745, 95);
+        c[0] = new Cannon (745, 95, 1);
         
         //Cannonballs
         cbl[0] = new CannonBallLeft (735, 95, -50 );
