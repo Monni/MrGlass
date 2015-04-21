@@ -166,7 +166,7 @@ public class MenuState extends GameState {
             } else if (selected == 3 && quitSelection == 1) {
                 selected = 0;
             }else if(currentSelection == 0 ){
-                gsm.states.push(new Level1State(gsm));
+                gsm.states.push(new LevelIntroState(gsm));
                // Start Game
             } else if (currentSelection == 1){
                // selected = 1;

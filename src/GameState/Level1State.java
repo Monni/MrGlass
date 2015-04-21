@@ -53,7 +53,7 @@ public class Level1State extends GameState {
     }
 
     public void init() {
-        player = new Player(18,39);
+        player = new Player(18,39, 25, 520);
         
         b = new Block[213];
         s = new Saw[6];
@@ -479,7 +479,7 @@ public class Level1State extends GameState {
      if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 1 )
          gsm.states.push(new MenuState(gsm));
      else if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 0 )
-         gsm.states.push(new Level1State(gsm));
+         gsm.states.push(new LevelIntroState(gsm));
     }
 
     public void keyReleased(int k) {
