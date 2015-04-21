@@ -14,32 +14,44 @@ import Objects.MovingSaw;
 import Objects.Saw;
 import Objects.Spike;
 import Objects.SpikeTurned;
+import java.applet.Applet;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
 
 /**
  *
  * @author Nissinen
  */
-public class Player {
+public class Player extends Applet {
 
  
+    private MediaTracker mt = new MediaTracker(this);
+    private boolean mediachecked = false;
     
-       private double moveSpeed = 2.5;
-       Image shatteredImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\shattered.png");
-       Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
-              
+    private final Image rightImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassman_right.gif");
+    private final Image leftImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassman_left.gif");
+    private final Image rightrunningImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassman_right_running.gif");
+    private final Image leftrunningImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassman_left_running.gif");
+    private final Image rightshatteredImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassmanright_shattered.gif");
+    private final Image leftshatteredImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassmanleft_shattered.gif");
+    
+    
+       
+      private final double moveSpeed = 2.5;
+      
     // if killed
        private boolean shattered = false;
        private int shatteredtimer = 0;
        private int retryselector = 0;
+       private boolean rightshattered;
+       private boolean leftshattered;
        
        // Score
-       private int startscore = 10000;
+       private final int startscore = 10000;
        private int scoretimer;
        private int currentscore;
        private boolean finished = false;
@@ -73,9 +85,8 @@ public class Player {
     public void tick(Block[] b, Saw[] s, Spike[] p, SpikeTurned[] pT, Goal[] goal, MovingSaw[] ms, Cannon[] c, CannonBallLeft[] cbl) {
         int iX = (int)x;
         int iY = (int)y;
-        
+       
         scoretimer++;
-        
         
         for (int i = 0; i < b.length; i++){
             //ground collision
@@ -326,25 +337,40 @@ if ( shattered == false) {
          if(!falling) {
             currentFallSpeed = .1;
         }
+         
+         
+         
+         
         }
     
     
     public void draw(Graphics g) {
+        if ( mediachecked == false )    MediaTracker();
        // If last moved to right
-       if(lastRight && right == false) {
-        g.drawImage(getPlayerImgRight(),(int) x,(int) y, null);
+       if(lastRight && right == false && shattered == false ) {
+        g.drawImage(rightImg,(int) x,(int) y, null);
        }
        // If moving to right
-       else if ( right == true ) {
-           g.drawImage(getPlayerImgRightRunning(), (int) x, (int) y, null);
+       else if ( right == true && shattered == false ) {
+           g.drawImage(rightrunningImg, (int) x, (int) y, null);
        }
        // If last moved to left
-       else if (lastLeft && left == false) {
-        g.drawImage(getPlayerImgLeft(), (int) x, (int) y, null);
+       else if (lastLeft && left == false && shattered == false ) {
+        g.drawImage(leftImg, (int) x, (int) y, null);
        }
        // If moving to left
-       else if ( left == true ) {
-           g.drawImage(getPlayerImgLeftRunning(), (int) x, (int) y, null);
+       else if ( left == true && shattered == false ) {
+           g.drawImage(leftrunningImg, (int) x, (int) y, null);
+       }
+       // If last moved to right and shattered
+       else if ( lastRight && shattered && leftshattered == false ) {
+           rightshattered = true;
+           g.drawImage(rightshatteredImg, (int) x -4, (int) y, null);
+       }
+       // If last moved to left and shattered
+       else if ( lastLeft && shattered && rightshattered == false ) {
+           leftshattered = true;
+           g.drawImage(leftshatteredImg, (int) x -4, (int) y, null);
        }
     }
     
@@ -364,9 +390,11 @@ if ( shattered == false) {
         
         if ( k == KeyEvent.VK_ENTER && shattered ) {
             if ( retryselector == 0 ) {
-                System.out.println("UUSIKSI");
+                rightshatteredImg.flush();      // Nollaa Playerin hajoamisanimaation
+                leftshatteredImg.flush();
             } else {
-                System.out.println("MENUUN");
+                rightshatteredImg.flush();      // Nollaa Playerin hajoamisanimaation
+                leftshatteredImg.flush();
             }
         }
     }
@@ -376,26 +404,6 @@ if ( shattered == false) {
         if ( k == KeyEvent.VK_LEFT) left = false;
     }
     
-        public Image getPlayerImgRight(){
-          ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_right.gif");
-        return ic.getImage();
-    }
-    
-    public Image getPlayerImgLeft() {
-        ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_left.gif");
-        return ic.getImage();
-    }
-    
-    public Image getPlayerImgRightRunning() {
-        ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_right_running.gif");
-        return ic.getImage();
-    }
-    
-    public Image getPlayerImgLeftRunning() {
-        ImageIcon ic = new ImageIcon("src\\resources\\glassman\\glassman_left_running.gif");
-        return ic.getImage();
-    }
- 
     
     public boolean getShatteredBoolean() {
         return shattered;
@@ -413,11 +421,28 @@ if ( shattered == false) {
         if ( shattered == false && finished == false ) {
             currentscore = startscore - (scoretimer / 10);
         } else if ( shattered == false && finished ) {
-            currentscore = currentscore;
+           // currentscore = currentscore;
         } else {
             currentscore = 0;
         }
         return currentscore;
     }
  
+    public void MediaTracker() {
+         
+        mt.addImage(rightImg, 0);
+        mt.addImage(leftImg, 1);
+        mt.addImage(rightrunningImg, 2);
+        mt.addImage(leftrunningImg, 3);
+        mt.addImage(rightshatteredImg, 4);
+        mt.addImage(leftshatteredImg, 5);
+        
+        try {
+            mt.waitForAll();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        this.mediachecked = true;
+    }
+    
 }
