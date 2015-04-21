@@ -48,10 +48,6 @@ public class MovingSaw extends Rectangle {
         ImageIcon saw = new ImageIcon("src\\resources\\objects\\sawleft.gif");
         return saw.getImage();
     }
-
-    public int getMove(){
-        return speed;
-    }
     
     public void draw (Graphics g) {
         if (speed <= 0) {
