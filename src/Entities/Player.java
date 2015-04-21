@@ -64,9 +64,9 @@ public class Player {
     private boolean lastLeft = false;
     private boolean lastRight = true;
     
-    public Player( int width, int height) {
-        x = 550;
-       y = 50;
+    public Player( int width, int height, int x, int y) {
+       this.x = x;
+       this.y = y;
        this.width = width;
        this.height = height;
     }
@@ -401,6 +401,10 @@ if ( shattered == false) {
         return shattered;
     }
     
+    public boolean getFinishedBoolean() {
+        return finished;
+    }
+    
     public int getRetrySelector() {
         return retryselector;
     }
@@ -415,6 +419,5 @@ if ( shattered == false) {
         }
         return currentscore;
     }
-    
-    
+ 
 }
