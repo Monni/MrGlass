@@ -158,8 +158,7 @@ public class MenuState extends GameState {
                 quitSelection = 1;
         }
         
- 
-                        
+
         if (k == KeyEvent.VK_ENTER){
             if (selected == 3 && quitSelection == 0) {
                 System.exit(0);
@@ -188,12 +187,8 @@ public class MenuState extends GameState {
             } else
             selected = 0;
         }
-        
-
-        
-        
+                  
     }
-
     
     public void keyReleased(int k) {
         // Nothing..

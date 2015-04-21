@@ -200,17 +200,17 @@ public class LevelIntroState extends GameState {
         b[98] = new Block (650, 680, 1);
         b[99] = new Block (650, 710, 1);
         
-        b[100] = new Block (680, 620, 0);
-        b[101] = new Block (680, 650, 1);
-        b[102] = new Block (680, 680, 1);
-        b[103] = new Block (680, 710, 1);
+       b[100] = new Block (680, 620, 2);
+        b[101] = new Block (680, 650, 12);
+        b[102] = new Block (680, 680, 12);
+        b[103] = new Block (680, 710, 12);
         
         // Hyppy
         
-        b[104] = new Block (860, 620, 0);
-        b[105] = new Block (860, 650, 1);
-        b[106] = new Block (860, 680, 1);
-        b[107] = new Block (860, 710, 1);
+        b[104] = new Block (860, 620, 3);
+        b[105] = new Block (860, 650, 16);
+        b[106] = new Block (860, 680, 16);
+        b[107] = new Block (860, 710, 16);
         
         b[108] = new Block (890, 620, 0);
         b[109] = new Block (890, 650, 1);

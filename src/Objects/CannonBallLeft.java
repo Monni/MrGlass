@@ -17,35 +17,47 @@ import static javax.swing.Spring.width;
  */
 public class CannonBallLeft extends Rectangle {
     
- 
-    private int leftBound;
+  
+    private int Bound;
     private int speed = 4;
     private int StartX;
- 
+    private int suunta;
     
-    public CannonBallLeft (int x, int y, int leftBound) {
+    public CannonBallLeft (int x, int y, int Bound, int suunta) {
         setBounds(x, y, 15, 15);
         
  
-        this.leftBound = leftBound;
+        this.Bound = Bound;
+        this.suunta = suunta;
         StartX = x;
     }
     
      public void tick(){
-            
-            
-            if(x <= leftBound ){
+         // vasen
+            if (suunta == 0 ){
+            x-=speed;
+            }
+         //oikea
+            if (suunta == 1){
+                x+=speed;
+            }
+    
+            if(x <= Bound && suunta == 0 ){
                 x = StartX;
             }
             
-            x-=speed;
+            if(x >= Bound + width && suunta == 1){
+                x = StartX;
+            }
+            
+            
     }
-    public Image getMovingCannonBallLeft(){
+    public Image getMovingCannonBall(){
         ImageIcon can = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\objects\\CannonBall.png");
         return can.getImage();
     }
     
     public void draw (Graphics g) {
-         g.drawImage(getMovingCannonBallLeft(), (int) x, (int) y, null);
+         g.drawImage(getMovingCannonBall(), (int) x, (int) y, null);
     }
 }
