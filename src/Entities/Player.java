@@ -88,6 +88,11 @@ public class Player extends Applet {
        
         scoretimer++;
         
+        //tippuminen rotkoon
+        if(y >= 1000){
+            shattered = true;
+        }
+        
         for (int i = 0; i < b.length; i++){
             //ground collision
 if ( shattered == false) {
