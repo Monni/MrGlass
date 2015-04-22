@@ -124,7 +124,26 @@ public class Block extends Rectangle {
           ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\grassworld\\oikeaReuna.png");
         return blockStyle.getImage();
         }
-
+        
+        
+        /////////////////
+        // METAL WORLD
+        /////////////////
+        //metalli yleis
+        if(style == 17) {
+        ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\metalworld\\Metalli.png");
+        return blockStyle.getImage();
+        }
+        //metalli vasen reuna
+        if(style == 18) {
+        ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\metalworld\\MetalliVasen.png");
+        return blockStyle.getImage();
+        }
+        //metalli oikea reuna
+        if(style == 19) {
+            ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\metalworld\\MetalliOikea.png");
+        return blockStyle.getImage();
+        }
         // nollalla suora 
          else {
         ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\grassworld\\suora.png");
