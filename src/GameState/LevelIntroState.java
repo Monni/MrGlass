@@ -31,11 +31,15 @@ public class LevelIntroState extends GameState {
 
     private final Image shatteredMenu = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\shattered.png");
     private final Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
+    private final Image storyImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\story.png");
+    private final Image movinginfoImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\infomoving.png");
+    private final Image jumpinfoImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\infojump.png");
     
     private Player player;
     private boolean shattered, finished;
     private int retryselector;
     private int currentscore;
+    private int xloc;
     
     
     private int testi = 0;
@@ -70,7 +74,7 @@ public class LevelIntroState extends GameState {
         
         
          //moving saw
-        ms[0] = new MovingSaw (201,590, 200, 700 );
+        ms[0] = new MovingSaw (401 ,590, 400, 700 );
         f[0] = new Flame ( 100, 579, 1);
         f[1] = new Flame ( 1000, 579, 0);
          //Goal
@@ -310,6 +314,7 @@ public class LevelIntroState extends GameState {
       finished = player.getFinishedBoolean();
       retryselector = player.getRetrySelector();
       currentscore = player.getCurrentScore();
+      xloc = player.getCurrentX();
       
       
       
@@ -369,6 +374,16 @@ public class LevelIntroState extends GameState {
          
                      // kuoleman korjatessa
         
+         // Story IMG
+         g.drawImage(storyImg, 100, 50, null);
+         
+         if ( xloc > 0 && xloc < 500 ) {
+             g.drawImage(movinginfoImg, 25, 430, null);
+         }
+         if ( xloc > 225 && xloc < 750 ) {
+             g.drawImage(jumpinfoImg, 225, 470, null);
+         }
+         
         if ( shattered ) {
             g.drawImage(shatteredMenu, 440, 250, this);
             if ( retryselector == 0 )

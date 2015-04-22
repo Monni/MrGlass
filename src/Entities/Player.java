@@ -463,6 +463,10 @@ if ( shattered == false) {
         }
         return currentscore;
     }
+    
+    public int getCurrentX() {
+        return (int) x;
+    }
  
     public void MediaTracker() {
          
