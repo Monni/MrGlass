@@ -144,6 +144,11 @@ public class Block extends Rectangle {
             ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\metalworld\\MetalliOikea.png");
         return blockStyle.getImage();
         }
+        //putki
+        if(style == 20) {
+            ImageIcon blockStyle = new ImageIcon("src\\resources\\objects\\putki.png");
+        return blockStyle.getImage();
+        }
         // nollalla suora 
          else {
         ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\grassworld\\suora.png");
