@@ -22,6 +22,10 @@ import java.awt.MediaTracker;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 /**
  *
@@ -29,6 +33,12 @@ import java.awt.event.KeyEvent;
  */
 public class Player extends Applet {
 
+    
+    
+    FileWriter fw = null;
+    FileReader fr = null;
+    BufferedWriter bw;
+    BufferedReader br;
  
     private MediaTracker mt = new MediaTracker(this);
     private boolean mediachecked = false;
@@ -52,10 +62,14 @@ public class Player extends Applet {
        private boolean leftshattered;
        
        // Score
-       private final int startscore = 10000;
+       private int startscore;
        private int scoretimer;
        private int currentscore;
        private boolean finished = false;
+       
+       // Score written
+       private boolean scorewritten = false;
+       private boolean scoreread = false;
     
     //bounds
    private double x, y;
@@ -86,6 +100,24 @@ public class Player extends Applet {
     public void tick(Block[] b, Saw[] s, Spike[] p, SpikeTurned[] pT, Goal[] goal, MovingSaw[] ms, Cannon[] c, CannonBallLeft[] cbl, Flame [] f) {
         int iX = (int)x;
         int iY = (int)y;
+        
+       
+        
+        if ( scoreread == false ) {
+        try {
+        fr = new FileReader("scorecounter.txt");
+        br = new BufferedReader(fr);
+        startscore = Integer.parseInt(br.readLine());
+        br.close();
+        } catch (Exception e) {
+            System.out.println("Fatal error reading scorefile!");
+        }
+        scoreread = true;
+        }
+        
+ 
+         System.out.println(currentscore);
+
        
         scoretimer++;
         
@@ -260,8 +292,22 @@ if ( shattered == false) {
                 
                 System.out.println("Maali RIGHTII");// tähän mitä tapahtuu kun pelaaja pääsee maaliin
                 finished = true;
-              }
+                
+                    if ( finished && scorewritten == false ) {                     // Pisteiden kirjoitus filuun kun maalissa
+                        try {
+                            fw = new FileWriter("scorecounter.txt");
+                            bw = new BufferedWriter(fw);
+                            bw.write(String.valueOf(currentscore));
+                            bw.newLine();
+                            bw.close();
+                        } catch(Exception e){
+                            System.out.println("Fatal error writing scorefile!");
+                        }
+                            scorewritten = true;
+                    }
+            }
         }
+        
         //CANNON COLLISION
          for (int i = 0; i < c.length; i++){
 
@@ -484,5 +530,18 @@ if ( shattered == false) {
         }
         this.mediachecked = true;
     }
+    
+         public void ScoreCounterReset() {
+                             // Pisteiden kirjoitus filuun kun maalissa
+                        try {
+                            fw = new FileWriter("scorecounter.txt");
+                            bw = new BufferedWriter(fw);
+                            bw.write(String.valueOf(10000));
+                            bw.newLine();
+                            bw.close();
+                        } catch(Exception e){
+                            System.out.println("Fatal error resetting scorefile!");
+                        }
+     }
     
 }

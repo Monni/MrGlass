@@ -15,6 +15,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.MediaTracker;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +25,8 @@ import java.util.logging.Logger;
  * @author Nissinen
  */
 public class MenuState extends GameState {
-
+ FileWriter fw = null;
+ BufferedWriter bw;
    
     private int currentSelection = 0;
     private int quitSelection = 0;
@@ -161,18 +164,17 @@ public class MenuState extends GameState {
 
         if (k == KeyEvent.VK_ENTER){
             if (selected == 3 && quitSelection == 0) {
-                System.exit(0);
+                System.exit(0);                                                 // Exit to system
             } else if (selected == 3 && quitSelection == 1) {
                 selected = 0;
             }else if(currentSelection == 0 ){
-                gsm.states.push(new LevelIntroState(gsm));
-               // Start Game
+                ScoreCounterReset();
+                gsm.states.push(new LevelIntroState(gsm));                      // Start Game
             } else if (currentSelection == 1){
                // selected = 1;
                 // High Scores
-            }else if (currentSelection == 2){
+            }else if (currentSelection == 2){                                   // Credits
                 selected = 2;
-                // Credits
             }else if (currentSelection == 3) {
                 selected = 3;
             }
@@ -201,6 +203,19 @@ public class MenuState extends GameState {
      public Image getSelecterFlames() {
          ImageIcon ic = new ImageIcon("src\\resources\\mainmenu\\flames.gif");
          return ic.getImage();
+     }
+     
+     public void ScoreCounterReset() {
+                             // Pisteiden kirjoitus filuun kun maalissa
+                        try {
+                            fw = new FileWriter("scorecounter.txt");
+                            bw = new BufferedWriter(fw);
+                            bw.write(String.valueOf(10000));
+                            bw.newLine();
+                            bw.close();
+                        } catch(Exception e){
+                            System.out.println("Fatal error resetting scorefile!");
+                        }
      }
      
 }

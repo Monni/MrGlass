@@ -416,7 +416,7 @@ public class Level1State extends GameState {
       
       
       
-        System.out.println(currentscore);
+       // System.out.println(currentscore);
       
       
     }
@@ -481,8 +481,11 @@ public class Level1State extends GameState {
      player.keyPressed(k);
      if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 1 )
          gsm.states.push(new MenuState(gsm));
-     else if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 0 )
+     else if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 0 ) {
+         player.ScoreCounterReset();
          gsm.states.push(new LevelIntroState(gsm));
+     }
+         
     }
 
     public void keyReleased(int k) {
