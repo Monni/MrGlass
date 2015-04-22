@@ -9,6 +9,7 @@ import Collision.Collision;
 import Objects.Block;
 import Objects.Cannon;
 import Objects.CannonBallLeft;
+import Objects.Flame;
 import Objects.Goal;
 import Objects.MovingSaw;
 import Objects.Saw;
@@ -82,7 +83,7 @@ public class Player extends Applet {
        this.width = width;
        this.height = height;
     }
-    public void tick(Block[] b, Saw[] s, Spike[] p, SpikeTurned[] pT, Goal[] goal, MovingSaw[] ms, Cannon[] c, CannonBallLeft[] cbl) {
+    public void tick(Block[] b, Saw[] s, Spike[] p, SpikeTurned[] pT, Goal[] goal, MovingSaw[] ms, Cannon[] c, CannonBallLeft[] cbl, Flame [] f) {
         int iX = (int)x;
         int iY = (int)y;
        
@@ -131,9 +132,11 @@ if ( shattered == false) {
         
         
         
-        /*
+        /***************************
+         * 
         ** Object collision
-        */
+        * 
+        ****************************/
         
         // sahojen collision
         for (int i = 0; i < s.length; i++){
@@ -308,7 +311,35 @@ if ( shattered == false) {
                 shattered = true;
             }
         }
-        
+         // FLAME COLLISION
+         for (int i = 0; i < f.length; i++){
+            if (Collision.playerFlame(new Point(iX + width-5, iY - 15 ), f[i]) 
+                    //oikeia alakulma
+                    || Collision.playerFlame(new Point(iX + width-5, iY + height - 15 ), f[i])) {
+                
+                System.out.println("FLAME");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
+               // shattered = true;
+              }
+           
+            //left side collision
+       //     vasen yläkulma
+            if(Collision.playerFlame(new Point(iX - 10 , iY -15), f[i])         
+                    //vasen alakulma
+                    || Collision.playerFlame(new Point(iX +3 , iY + height-15 ),f[i])){
+                
+                System.out.println("FLAME");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
+               // shattered = true;
+        }
+            if(Collision.playerFlame(new Point(iX +5, iY + height-15), f[i])
+                    || Collision.playerFlame(new Point ( iX + width -5, iY + height-15 ), f[i])){
+                System.out.println("FLAMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");// tähän mitä tapahtuu kun pelaaja kuolee
+                jumping = true;
+                //shattered = true;
+            }
+        }
+         
         topCollision = false;
         
         if (right) {

@@ -10,6 +10,7 @@ import Entities.Player;
 import Objects.Block;
 import Objects.Cannon;
 import Objects.CannonBallLeft;
+import Objects.Flame;
 import Objects.Goal;
 import Objects.MovingSaw;
 import Objects.Saw;
@@ -46,6 +47,7 @@ public class Level1State extends GameState {
     private MovingSaw[] ms;
     private Cannon[] c;
     private CannonBallLeft[] cbl;
+    private Flame [] f;
     
     
     public Level1State(GameStateManager gsm) {
@@ -63,6 +65,7 @@ public class Level1State extends GameState {
         ms = new MovingSaw[2];
         c = new Cannon[1];
         cbl = new CannonBallLeft[1];
+        f = new Flame[0];
         
         
         //Cannon
@@ -402,7 +405,7 @@ public class Level1State extends GameState {
         for ( int i = 0; i < cbl.length; i++){
             cbl[i].tick();
         }
-      player.tick(b, s, p, pT, goal, ms, c, cbl);
+      player.tick(b, s, p, pT, goal, ms, c, cbl, f);
       
       
       // Haetaan pelaajan tila, retryn tila, pisteet

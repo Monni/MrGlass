@@ -10,6 +10,7 @@ import Entities.Player;
 import Objects.Block;
 import Objects.Cannon;
 import Objects.CannonBallLeft;
+import Objects.Flame;
 import Objects.Goal;
 import Objects.MovingSaw;
 import Objects.Saw;
@@ -47,6 +48,7 @@ public class LevelIntroState extends GameState {
     private MovingSaw[] ms;
     private Cannon[] c;
     private CannonBallLeft[] cbl;
+    private Flame[] f;
     
     
     public LevelIntroState(GameStateManager gsm) {
@@ -64,11 +66,13 @@ public class LevelIntroState extends GameState {
         ms = new MovingSaw[1];
         c = new Cannon[0];
         cbl = new CannonBallLeft[0];
+        f = new Flame [2];
         
         
          //moving saw
         ms[0] = new MovingSaw (201,590, 200, 700 );
-        
+        f[0] = new Flame ( 100, 579, 1);
+        f[1] = new Flame ( 1000, 579, 0);
          //Goal
         goal[0] = new Goal (1200, 560);
        
@@ -294,7 +298,11 @@ public class LevelIntroState extends GameState {
             goal[i].tick();
         }
         
-      player.tick(b, s, p, pT, goal, ms, c, cbl);
+        for ( int i = 0; i < f.length; i++){
+            f[i].tick();
+        }
+        
+      player.tick(b, s, p, pT, goal, ms, c, cbl, f);
       
       
       // Haetaan pelaajan tila, retryn tila, pisteet
@@ -306,7 +314,7 @@ public class LevelIntroState extends GameState {
       
       
       
-        System.out.println(currentscore);
+   //     System.out.println(currentscore);
       
       
     }
@@ -353,6 +361,10 @@ public class LevelIntroState extends GameState {
          //cannonballLEFT
          for ( int i = 0; i < cbl.length; i++){
             cbl[i].draw(g);
+        }
+         //flame
+         for ( int i = 0; i < f.length; i++){
+            f[i].draw(g);
         }
          
                      // kuoleman korjatessa
