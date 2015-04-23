@@ -318,7 +318,7 @@ public class LevelIntroState extends GameState {
       
       //  System.out.println(currentscore);
       
-      
+       if ( finished ) gsm.states.push(new Level1State(gsm));
       
    //     System.out.println(currentscore);
       
@@ -393,7 +393,7 @@ public class LevelIntroState extends GameState {
                g.drawImage(selectorImg, 627, 381, null);
         }
         
-        if ( finished ) gsm.states.push(new Level1State(gsm));
+       
          
     }
 

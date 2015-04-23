@@ -56,7 +56,7 @@ public class Level2State extends GameState {
     public void init() {
         player = new Player(18,39, 15, 600);
         
-        b = new Block[73];
+        b = new Block[81];
         s = new Saw[6];
         goal = new Goal[1];
         p = new Spike[0];
@@ -163,16 +163,33 @@ public class Level2State extends GameState {
         b[64] = new Block (-10, 350, 17);
         b[65] = new Block (-10, 320, 17);
         b[66] = new Block (-10, 290, 17);
+        b[67] = new Block (-10, 260, 17);
+        b[68] = new Block (-10, 230, 17);
+        b[69] = new Block (-10, 200, 17);
+        b[70] = new Block (-10, 170, 17);
+        b[71] = new Block (-10, 140, 17);
+        b[72] = new Block (-10, 110, 17);
+        b[73] = new Block (-10, 80, 17);
+        
+        // Ylöshyppelyn jälkeinen alashyppy
+        b[74] = new Block (290, 80, 17);
+        b[75] = new Block (290, 110, 17);
+        b[76] = new Block (290, 140, 17);
+        b[77] = new Block (290, 170, 17);
+        b[78] = new Block (290, 200, 17);
+        b[79] = new Block (290, 230, 17);
+        b[80] = new Block (290, 260, 17);
         
         
         // Alun ylöshyppelun putket
+        /*
         b[67] = new Block (110, 620, 20);
         b[68] = new Block (20, 540, 20);
         b[69] = new Block (110, 460, 20);
         b[70] = new Block (20, 380, 20);
         b[71] = new Block (110, 300, 20);
         b[72] = new Block (20, 220, 20);
-        
+        */
     }
 
     public void tick() {
@@ -213,6 +230,7 @@ public class Level2State extends GameState {
       
       // Haetaan pelaajan tila, retryn tila, pisteet
       shattered = player.getShatteredBoolean();
+      finished = player.getFinishedBoolean();
       retryselector = player.getRetrySelector();
       currentscore = player.getCurrentScore();
       

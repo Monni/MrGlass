@@ -410,10 +410,11 @@ public class Level1State extends GameState {
       
       // Haetaan pelaajan tila, retryn tila, pisteet
       shattered = player.getShatteredBoolean();
+      finished = player.getFinishedBoolean();
       retryselector = player.getRetrySelector();
       currentscore = player.getCurrentScore();
       
-      
+       if ( finished ) gsm.states.push(new Level2State(gsm));
       
       
        // System.out.println(currentscore);
