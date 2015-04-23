@@ -33,7 +33,7 @@ public class Level1State extends GameState {
     private final Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
     
     private Player player;
-    private boolean shattered;
+    private boolean shattered, finished;
     private int retryselector;
     private int currentscore;
     
