@@ -16,6 +16,7 @@ import Objects.MovingSaw;
 import Objects.Saw;
 import Objects.Spike;
 import Objects.SpikeTurned;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -31,11 +32,16 @@ public class Level2State extends GameState {
 
     private final Image shatteredMenu = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\shattered.png");
     private final Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
+    private final Image fakecabinImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\fakecabin.png");
+    private final Image fakecabinInfo = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\fakecabininfo.png");
     
     private Player player;
     private boolean shattered, finished;
     private int retryselector;
     private int currentscore;
+    
+    private int xloc, yloc;
+     private Font font;
     
       
     private Spike[] p;
@@ -54,16 +60,16 @@ public class Level2State extends GameState {
     }
 
     public void init() {
-        player = new Player(18,39, 15, 600);
+        player = new Player(18,39, 350, 200); // 15, 600
         
-        b = new Block[186];
+        b = new Block[259];
         s = new Saw[0];
         goal = new Goal[1];
-        p = new Spike[1];
+        p = new Spike[2];
         pT = new SpikeTurned[0];
-        ms = new MovingSaw[0];
+        ms = new MovingSaw[1];
         c = new Cannon[5];
-        cbl = new CannonBallLeft[0];
+        cbl = new CannonBallLeft[5];
         f = new Flame[0];
         
         
@@ -76,6 +82,8 @@ public class Level2State extends GameState {
         
      // Spikes
         p[0] = new Spike(200, 350);
+        p[1] = new Spike(557, 350);
+        
         
        // Cannon
         c[0] = new Cannon(200, 415, 1);
@@ -84,12 +92,20 @@ public class Level2State extends GameState {
         c[3] = new Cannon(200, 595, 1);
         c[4] = new Cannon(200, 655, 1);
                 
-        
+        // Cannonball
+        cbl[0] = new CannonBallLeft(232, 415, 563, 1);
+        cbl[1] = new CannonBallLeft(232, 475, 563, 1);
+        cbl[2] = new CannonBallLeft(232, 535, 563, 1);
+        cbl[3] = new CannonBallLeft(232, 595, 563, 1);
+        cbl[4] = new CannonBallLeft(232, 655, 653, 1);
         
        
         
         //saws
         //s[0] = new Saw (150, 620);
+        
+        // Moving saw
+        ms[0] = new MovingSaw(386, 170, 385, 1010);
        
        
        
@@ -295,7 +311,7 @@ public class Level2State extends GameState {
         b[171] = new Block (590, 500, 17);
         b[172] = new Block (590, 470, 17);
         b[173] = new Block (590, 440, 17);
-        b[174] = new Block (560, 410, 17);
+        b[174] = new Block (590, 410, 17);
         b[175] = new Block (560, 380, 17);
         b[176] = new Block (530, 350, 17);
         b[177] = new Block (530, 320, 17);
@@ -309,21 +325,117 @@ public class Level2State extends GameState {
         b[185] = new Block (290, 290, 17);
         
         
+        // Takas ylös
+        b[186] = new Block (680, 680, 17);
+        b[187] = new Block (680, 650, 17);
+        
+        b[188] = new Block (620, 590, 17);
+        b[189] = new Block (710, 560, 17);
+        b[190] = new Block (710, 530, 17);
+        
+        b[191] = new Block (620, 470, 17);
+        b[192] = new Block (710, 410, 17);
+        b[193] = new Block (590, 380, 17);
+        
+        // Ylösnousun vasemmanpuoleinen seinä
+        b[194] = new Block (740, 680, 17);
+        b[195] = new Block (740, 650, 17);
+        b[196] = new Block (740, 620, 17);
+        b[197] = new Block (740, 590, 17);
+        b[198] = new Block (740, 560, 17);
+        b[199] = new Block (740, 530, 17);
+        b[200] = new Block (740, 500, 17);
+        b[201] = new Block (740, 470, 17);
+        b[202] = new Block (740, 440, 17);
+        b[203] = new Block (740, 410, 17);
+        b[204] = new Block (740, 380, 17);
+        b[205] = new Block (740, 350, 17);
+        b[206] = new Block (740, 320, 17);
+        b[207] = new Block (740, 290, 17);
+        
+        b[208] = new Block (710, 260, 17);
+        b[209] = new Block (680, 230, 17);
+        b[210] = new Block (650, 200, 17);
+        b[211] = new Block (620, 200, 17);
+        b[212] = new Block (590, 200, 17);
+        b[213] = new Block (560, 200, 17);
+        b[214] = new Block (530, 200, 17);
+        b[215] = new Block (500, 200, 17);
+        b[216] = new Block (470, 200, 17);
+        b[217] = new Block (440, 200, 17);
+        b[218] = new Block (410, 200, 17);
+        b[219] = new Block (380, 200, 17);
+        
+        // Seinän suoristumisen jälkeen lähtee vielä oikealle
+        b[220] = new Block (680, 200, 17);
+        b[221] = new Block (710, 200, 17);
+        b[222] = new Block (740, 200, 17);
+        b[223] = new Block (770, 200, 17);
+        b[224] = new Block (800, 200, 17);
+        b[225] = new Block (830, 200, 17);
+        b[226] = new Block (860, 200, 17);
+        b[227] = new Block (890, 200, 17);
+        b[228] = new Block (920, 200, 17);
+        b[229] = new Block (950, 200, 17);
+        b[230] = new Block (980, 200, 17);
+        b[231] = new Block (1010, 200, 17);
+        
+        // Suoran ylläoleva katto
+        b[232] = new Block (650, 100, 17);
+        b[233] = new Block (620, 100, 17);
+        b[234] = new Block (590, 100, 17);
+        b[235] = new Block (560, 100, 17);
+        b[236] = new Block (530, 100, 17);
+        b[237] = new Block (500, 100, 17);
+        b[238] = new Block (470, 100, 17);
+        b[239] = new Block (440, 100, 17);
+        b[240] = new Block (410, 100, 17);
+        b[241] = new Block (380, 100, 17);
+        b[242] = new Block (680, 100, 17);
+        b[243] = new Block (710, 100, 17);
+        b[244] = new Block (740, 100, 17);
+        b[245] = new Block (770, 100, 17);
+        b[246] = new Block (800, 100, 17);
+
+        b[247] = new Block (890, 135, 17);
+        b[248] = new Block (920, 135, 17);
+        b[249] = new Block (950, 135, 17);
+        b[250] = new Block (980, 135, 17);
+        b[251] = new Block (1010, 135, 17);
+        b[252] = new Block (1010, 165, 17);
+        b[253] = new Block (1010, 170, 17);
+        
+        // Katon jatke
+        b[254] = new Block (350, 100, 17);
+        b[255] = new Block (320, 100, 17);
+        b[256] = new Block (290, 100, 17);
         
         
         
+        // Hyppypalikka aiemmille suorille
+        b[257] = new Block (320, 230, 17);
+        b[258] = new Block (320, 260, 17);
         
-        
+        // Oikean päässä seinä
+        /*
+        b[232] = new Block (1010, 170, 17);
+        b[233] = new Block (1010, 140, 17);
+        b[234] = new Block (1010, 110, 17);
+        b[235] = new Block (1010, 80, 17);
+        b[236] = new Block (1010, 50, 17);
+        b[237] = new Block (1010, 20, 17);
+        */
         
         
         // Alun ylöshyppelun putket
         /*
-        b[67] = new Block (110, 620, 20);
-        b[68] = new Block (20, 540, 20);
-        b[69] = new Block (110, 460, 20);
-        b[70] = new Block (20, 380, 20);
-        b[71] = new Block (110, 300, 20);
-        b[72] = new Block (20, 220, 20);
+        b[190] = new Block (110, 620, 20);
+        b[191] = new Block (20, 540, 20);
+        b[192] = new Block (110, 460, 20);
+        b[193] = new Block (20, 380, 20);
+        b[194] = new Block (110, 300, 20);
+        b[195] = new Block (20, 220, 20);
+        b[196] = new Block (110, 160, 20);
         */
     }
 
@@ -368,6 +480,8 @@ public class Level2State extends GameState {
       finished = player.getFinishedBoolean();
       retryselector = player.getRetrySelector();
       currentscore = player.getCurrentScore();
+      xloc = player.getCurrentX();
+      yloc = player.getCurrentY();
       
       
       
@@ -379,9 +493,17 @@ public class Level2State extends GameState {
 
     public void draw(Graphics g) {
         
+       
+        
         // taustan piirto
         ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\background\\TaustaMap1.png");
         g.drawImage(ic.getImage(),0,0,null);
+        ImageIcon ic2 = new ImageIcon("src\\resources\\background\\TaustaMap2.png");
+        g.drawImage(ic2.getImage(), 0, 0, null);
+        
+        font = new Font ("Fixedsys", Font.PLAIN,18);
+      g.setFont(font);
+      g.drawString("Score: " + currentscore,1170, 25);
         
         //pelaajan piirto
       player.draw(g);  
@@ -420,6 +542,12 @@ public class Level2State extends GameState {
          for ( int i = 0; i < cbl.length; i++){
             cbl[i].draw(g);
         }
+         
+         // Fake cabin
+         g.drawImage(fakecabinImg, 375, 9, null);
+         if ( xloc > 300 && xloc < 660 && yloc < 100 ) {
+             g.drawImage(fakecabinInfo, 530, 20, null);
+         }
          
                      // kuoleman korjatessa
         

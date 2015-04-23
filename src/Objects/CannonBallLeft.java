@@ -8,6 +8,9 @@ package Objects;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import static javax.swing.Spring.width;
 
@@ -26,7 +29,7 @@ public class CannonBallLeft extends Rectangle {
     public CannonBallLeft (int x, int y, int Bound, int suunta) {
         setBounds(x, y, 15, 15);
         
- 
+       
         this.Bound = Bound;
         this.suunta = suunta;
         StartX = x;

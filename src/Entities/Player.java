@@ -512,6 +512,10 @@ if ( shattered == false) {
     public int getCurrentX() {
         return (int) x;
     }
+    
+        public int getCurrentY() {
+        return (int) y;
+    }
  
     public void MediaTracker() {
          
