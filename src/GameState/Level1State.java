@@ -16,6 +16,7 @@ import Objects.MovingSaw;
 import Objects.Saw;
 import Objects.Spike;
 import Objects.SpikeTurned;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -39,6 +40,7 @@ public class Level1State extends GameState {
     
     private int testi = 0;
     
+    private Font font;
     private Spike[] p;
     private SpikeTurned[] pT;
     private Block[] b;
@@ -424,12 +426,18 @@ public class Level1State extends GameState {
 
     public void draw(Graphics g) {
         
+    
+        
         // taustan piirto
         ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\background\\TaustaMap1.png");
         g.drawImage(ic.getImage(),0,0,null);
         
         //pelaajan piirto
       player.draw(g);  
+      
+          font = new Font ("Fixedsys", Font.PLAIN,18);
+      g.setFont(font);
+      g.drawString("Score: " + currentscore,1100, 50);
       
     //palikoiden piirto
       for ( int i = 0; i < b.length; i++) {
