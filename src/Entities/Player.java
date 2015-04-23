@@ -143,10 +143,11 @@ if ( shattered == false) {
                 System.out.println("LEFTII");
             }
             // Pohja
-            if(Collision.playerBlock(new Point(iX + 1, iY), b[i])
-                    || Collision.playerBlock(new Point( iX + width - 1, iY), b[i])){
+            if(Collision.playerBlock(new Point(iX + 1, iY - 2), b[i])
+                    || Collision.playerBlock(new Point( iX + width - 1, iY - 2), b[i])){
+                currentJumpSpeed = 0.3;
             falling = true;
-            jumping = false;
+            
             }
             // kävelypinta / top
             if(Collision.playerBlock(new Point(iX + 1, iY + height +2), b[i])
@@ -159,11 +160,9 @@ if ( shattered == false) {
                 falling = true;
                   }
               }  
-}
             }
-        
-        
-        
+            }
+
         /***************************
          * 
         ** Object collision
