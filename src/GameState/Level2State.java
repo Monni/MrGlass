@@ -56,13 +56,13 @@ public class Level2State extends GameState {
     public void init() {
         player = new Player(18,39, 15, 600);
         
-        b = new Block[81];
-        s = new Saw[6];
+        b = new Block[168];
+        s = new Saw[0];
         goal = new Goal[1];
-        p = new Spike[0];
+        p = new Spike[1];
         pT = new SpikeTurned[0];
         ms = new MovingSaw[0];
-        c = new Cannon[0];
+        c = new Cannon[6];
         cbl = new CannonBallLeft[0];
         f = new Flame[0];
         
@@ -74,19 +74,24 @@ public class Level2State extends GameState {
         //Goal
         goal[0] = new Goal (1200, 80);
         
-     
-       
+     // Spikes
+        p[0] = new Spike(200, 350);
+        
+       // Cannon
+        c[0] = new Cannon(200, 415, 1);
+        c[1] = new Cannon(200, 475, 1);
+        c[2] = new Cannon(200, 505, 1);
+        c[3] = new Cannon(200, 535, 1);
+        c[4] = new Cannon(200, 595, 1);
+        c[5] = new Cannon(200, 655, 1);
+                
         
         
        
         
         //saws
-        s[0] = new Saw (150, 620);
-        s[1] = new Saw (370, 310);
-        s[2] = new Saw (260, 310);
-        s[3] = new Saw (150, 310);
-        s[4] = new Saw (1070, 110);
-        s[5] = new Saw (1000, 110);
+        //s[0] = new Saw (150, 620);
+       
        
        
         // Alun maapalat
@@ -179,6 +184,115 @@ public class Level2State extends GameState {
         b[78] = new Block (290, 200, 17);
         b[79] = new Block (290, 230, 17);
         b[80] = new Block (290, 260, 17);
+        
+        
+        // Pudotuksen jälkeen tasaista
+        b[81] = new Block (200, 380, 17);
+        b[82] = new Block (230, 380, 17);
+        b[83] = new Block (260, 380, 17);
+        b[84] = new Block (290, 380, 17);
+        b[85] = new Block (320, 380, 17);
+        b[86] = new Block (350, 380, 17);
+        
+        // Alaspäin portaat ja tykkivälit
+        
+        b[87] = new Block (200, 440, 17);
+        b[88] = new Block (230, 440, 17);
+        b[89] = new Block (260, 440, 17);
+        b[90] = new Block (290, 440, 17);
+        b[91] = new Block (320, 440, 17);
+        b[92] = new Block (350, 440, 17);
+        b[93] = new Block (380, 440, 17);
+        
+        b[94] = new Block (200, 500, 17);
+        b[95] = new Block (230, 500, 17);
+        b[96] = new Block (260, 500, 17);
+        b[97] = new Block (290, 500, 17);
+        b[98] = new Block (320, 500, 17);
+        b[99] = new Block (350, 500, 17);
+        b[100] = new Block (380, 500, 17);
+        b[101] = new Block (410, 500, 17);
+        
+        b[102] = new Block (200, 560, 17);
+        b[103] = new Block (230, 560, 17);
+        b[104] = new Block (260, 560, 17);
+        b[105] = new Block (290, 560, 17);
+        b[106] = new Block (320, 560, 17);
+        b[107] = new Block (350, 560, 17);
+        b[108] = new Block (380, 560, 17);
+        b[109] = new Block (410, 560, 17);
+        b[110] = new Block (440, 560, 17);
+        
+        b[111] = new Block (200, 620, 17);
+        b[112] = new Block (230, 620, 17);
+        b[113] = new Block (260, 620, 17);
+        b[114] = new Block (290, 620, 17);
+        b[115] = new Block (320, 620, 17);
+        b[116] = new Block (350, 620, 17);
+        b[117] = new Block (380, 620, 17);
+        b[118] = new Block (410, 620, 17);
+        b[119] = new Block (440, 620, 17);
+        b[120] = new Block (470, 620, 17);
+        
+        b[121] = new Block (200, 680, 17);
+        b[122] = new Block (230, 680, 17);
+        b[123] = new Block (260, 680, 17);
+        b[124] = new Block (290, 680, 17);
+        b[125] = new Block (320, 680, 17);
+        b[126] = new Block (350, 680, 17);
+        b[127] = new Block (380, 680, 17);
+        b[128] = new Block (410, 680, 17);
+        b[129] = new Block (440, 680, 17);
+        b[130] = new Block (470, 680, 17);
+        b[131] = new Block (500, 680, 17);
+        
+        // Alamaa
+        b[132] = new Block (200, 710, 17);
+        b[133] = new Block (230, 710, 17);
+        b[134] = new Block (260, 710, 17);
+        b[135] = new Block (290, 710, 17);
+        b[136] = new Block (320, 710, 17);
+        b[137] = new Block (350, 710, 17);
+        b[138] = new Block (380, 710, 17);
+        b[139] = new Block (410, 710, 17);
+        b[140] = new Block (440, 710, 17);
+        b[141] = new Block (470, 710, 17);
+        b[142] = new Block (500, 710, 17);
+        b[143] = new Block (530, 710, 17);
+        b[144] = new Block (560, 710, 17);
+        b[145] = new Block (590, 710, 17);
+        b[146] = new Block (620, 710, 17);
+        b[147] = new Block (650, 710, 17);
+        b[148] = new Block (680, 710, 17);
+        b[149] = new Block (710, 710, 17);
+        b[150] = new Block (740, 710, 17);
+        b[151] = new Block (770, 710, 17);
+        b[152] = new Block (800, 710, 17);
+        b[153] = new Block (830, 710, 17);
+        b[154] = new Block (860, 710, 17);
+        b[155] = new Block (890, 710, 17);
+        b[156] = new Block (920, 710, 17);
+        b[157] = new Block (950, 710, 17);
+        b[158] = new Block (980, 710, 17);
+        b[159] = new Block (1010, 710, 17);
+        b[160] = new Block (1040, 710, 17);
+        b[161] = new Block (1070, 710, 17);
+        b[162] = new Block (1100, 710, 17);
+        b[163] = new Block (1130, 710, 17);
+        b[164] = new Block (1160, 710, 17);
+        b[165] = new Block (1190, 710, 17);
+        b[163] = new Block (1220, 710, 17);
+        b[164] = new Block (1250, 710, 17);
+
+        // Nousun jälkeiseen pari lisäpalaa
+        b[165] = new Block (290, 50, 17);
+        b[166] = new Block (290, 20, 17);
+        b[167] = new Block (290, -10, 17);
+        
+        
+        
+        
+        
         
         
         // Alun ylöshyppelun putket
