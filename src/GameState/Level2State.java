@@ -56,13 +56,13 @@ public class Level2State extends GameState {
     public void init() {
         player = new Player(18,39, 15, 600);
         
-        b = new Block[168];
+        b = new Block[186];
         s = new Saw[0];
         goal = new Goal[1];
         p = new Spike[1];
         pT = new SpikeTurned[0];
         ms = new MovingSaw[0];
-        c = new Cannon[6];
+        c = new Cannon[5];
         cbl = new CannonBallLeft[0];
         f = new Flame[0];
         
@@ -80,10 +80,9 @@ public class Level2State extends GameState {
        // Cannon
         c[0] = new Cannon(200, 415, 1);
         c[1] = new Cannon(200, 475, 1);
-        c[2] = new Cannon(200, 505, 1);
-        c[3] = new Cannon(200, 535, 1);
-        c[4] = new Cannon(200, 595, 1);
-        c[5] = new Cannon(200, 655, 1);
+        c[2] = new Cannon(200, 535, 1);
+        c[3] = new Cannon(200, 595, 1);
+        c[4] = new Cannon(200, 655, 1);
                 
         
         
@@ -288,6 +287,28 @@ public class Level2State extends GameState {
         b[165] = new Block (290, 50, 17);
         b[166] = new Block (290, 20, 17);
         b[167] = new Block (290, -10, 17);
+        
+        // Alashyppelyä vastaava seinä
+        b[168] = new Block (590, 590, 17);
+        b[169] = new Block (590, 560, 17);
+        b[170] = new Block (590, 530, 17);
+        b[171] = new Block (590, 500, 17);
+        b[172] = new Block (590, 470, 17);
+        b[173] = new Block (590, 440, 17);
+        b[174] = new Block (560, 410, 17);
+        b[175] = new Block (560, 380, 17);
+        b[176] = new Block (530, 350, 17);
+        b[177] = new Block (530, 320, 17);
+        b[178] = new Block (500, 290, 17);
+        b[179] = new Block (470, 290, 17);
+        b[180] = new Block (440, 290, 17);
+        b[181] = new Block (410, 290, 17);
+        b[182] = new Block (380, 290, 17);
+        b[183] = new Block (350, 290, 17);
+        b[184] = new Block (320, 290, 17);
+        b[185] = new Block (290, 290, 17);
+        
+        
         
         
         
