@@ -62,10 +62,10 @@ public class Level2State extends GameState {
     public void init() {
         player = new Player(18,39, 350, 200); // 15, 600
         
-        b = new Block[289];
+        b = new Block[290];
         s = new Saw[0];
         goal = new Goal[1];
-        p = new Spike[4];
+        p = new Spike[5];
         pT = new SpikeTurned[0];
         ms = new MovingSaw[2];
         c = new Cannon[6];
@@ -86,6 +86,8 @@ public class Level2State extends GameState {
         
         p[2] = new Spike(969, 370);
         p[3] = new Spike(820, 490);
+        
+        p[4] = new Spike (890, 370);
                 
                  
         
@@ -447,21 +449,24 @@ public class Level2State extends GameState {
         b[275] = new Block (980, 400, 17);
         b[276] = new Block (950, 400, 17);
         b[277] = new Block (920, 400, 17);
-        b[278] = new Block (980, 430, 17);
-        b[279] = new Block (950, 430, 17);
-        b[280] = new Block (920, 430, 17);
+        b[278] = new Block (890, 400, 17);
+
         
-        b[281] = new Block (830, 520, 17);
-        b[282] = new Block (800, 520, 17);
-        b[283] = new Block (770, 520, 17);
-        b[284] = new Block (830, 550, 17);
-        b[285] = new Block (800, 550, 17);
-        b[286] = new Block (770, 550, 17);
+        b[279] = new Block (980, 430, 17);
+        b[280] = new Block (950, 430, 17);
+        b[281] = new Block (920, 430, 17);
+        
+        b[282] = new Block (830, 520, 17);
+        b[283] = new Block (800, 520, 17);
+        b[284] = new Block (770, 520, 17);
+        b[285] = new Block (830, 550, 17);
+        b[286] = new Block (800, 550, 17);
+        b[287] = new Block (770, 550, 17);
         
         
         // Hyppypalikka aiemmille suorille
-       b[287] = new Block (320, 230, 17);
-       b[288] = new Block (320, 260, 17);
+       b[288] = new Block (320, 230, 17);
+       b[289] = new Block (320, 260, 17);
         
         // Oikean päässä seinä
         /*
