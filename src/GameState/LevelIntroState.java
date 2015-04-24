@@ -82,7 +82,7 @@ public class LevelIntroState extends GameState {
         goal[0] = new Goal (1200, 560);
        
         // Alaosasto vasemmalta oikealle
-        b[160] = new Block (100, 590, 0);
+        b[160] = new Block (100, 520, 0);
         b[0] = new Block (-10, 620, 0);
         b[1] = new Block (-10, 650, 1);
         b[2] = new Block (-10, 680, 1);
