@@ -60,16 +60,16 @@ public class Level2State extends GameState {
     }
 
     public void init() {
-        player = new Player(18,39, 350, 200); // 15, 600
+        player = new Player(18,39, 240, 0); // 15, 600
         
-        b = new Block[290];
-        s = new Saw[0];
+        b = new Block[302];
+        s = new Saw[2];
         goal = new Goal[1];
-        p = new Spike[5];
+        p = new Spike[8];
         pT = new SpikeTurned[0];
         ms = new MovingSaw[2];
-        c = new Cannon[6];
-        cbl = new CannonBallLeft[6];
+        c = new Cannon[7];
+        cbl = new CannonBallLeft[7];
         f = new Flame[0];
         
         
@@ -78,7 +78,7 @@ public class Level2State extends GameState {
        
         
         //Goal
-        goal[0] = new Goal (1200, 580);
+        goal[0] = new Goal (1220, 650);
         
      // Spikes
         p[0] = new Spike(200, 350);
@@ -88,9 +88,12 @@ public class Level2State extends GameState {
         p[3] = new Spike(820, 490);
         
         p[4] = new Spike (890, 370);
-                
+         
+        p[5] = new Spike (1037, 400);
+        p[6] = new Spike (1005, 400);
+        p[7] = new Spike (1066, 400);
                  
-        
+       
         
        // Cannon
         c[0] = new Cannon(200, 415, 1);
@@ -100,6 +103,8 @@ public class Level2State extends GameState {
         c[4] = new Cannon(200, 655, 1);
         
         c[5] = new Cannon(1245, 110, 0);
+        
+        c[6] = new Cannon(770, 590, 1);
                 
         // Cannonball
         cbl[0] = new CannonBallLeft(232, 415, 563, 1);
@@ -110,10 +115,14 @@ public class Level2State extends GameState {
         
         cbl[5] = new CannonBallLeft(1245, 110, 825, 0);
         
+        cbl[6] = new CannonBallLeft(797, 590, 1310, 1);
+        
        
         
         //saws
-        //s[0] = new Saw (150, 620);
+        s[0] = new Saw (860, 680);
+        s[1] = new Saw (930, 680);
+      
         
         // Moving saw
         ms[0] = new MovingSaw(386, 170, 385, 1010);
@@ -459,14 +468,32 @@ public class Level2State extends GameState {
         b[282] = new Block (830, 520, 17);
         b[283] = new Block (800, 520, 17);
         b[284] = new Block (770, 520, 17);
-        b[285] = new Block (830, 550, 17);
-        b[286] = new Block (800, 550, 17);
-        b[287] = new Block (770, 550, 17);
+        b[285] = new Block (800, 550, 17);
+        b[286] = new Block (770, 550, 17);
+        
+        b[287] = new Block (890, 430, 17);
+        b[288] = new Block (1010, 430, 17);
+        b[289] = new Block (1040, 430, 17);
+        b[290] = new Block (1070, 430, 17);
+        b[291] = new Block (1100, 430, 17);
+        b[292] = new Block (1100, 400, 17);
+        
+        // Loppuportaat
+        b[293] = new Block (1100, 680, 17);
+        b[294] = new Block (1100, 650, 17);
+        b[295] = new Block (1100, 620, 17);
+        b[296] = new Block (1070, 680, 17);
+        b[297] = new Block (1070, 650, 17);
+        b[298] = new Block (1040, 680, 17);
+        
+        // Lopputykin alle
+        b[299] = new Block (770, 615, 17);
+        
         
         
         // Hyppypalikka aiemmille suorille
-       b[288] = new Block (320, 230, 17);
-       b[289] = new Block (320, 260, 17);
+       b[300] = new Block (320, 230, 17);
+       b[301] = new Block (320, 260, 17);
         
         // Oikean päässä seinä
         /*
@@ -597,7 +624,7 @@ public class Level2State extends GameState {
          
          // Fake cabin
          g.drawImage(fakecabinImg, 375, 9, null);
-         if ( xloc > 300 && xloc < 660 && yloc < 100 ) {
+         if ( xloc > 300 && xloc < 660 && yloc < 70 ) {
              g.drawImage(fakecabinInfo, 530, 20, null);
          }
          
