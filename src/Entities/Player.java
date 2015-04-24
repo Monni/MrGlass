@@ -54,6 +54,10 @@ public class Player extends Applet {
        
       private final double moveSpeed = 2.5;
       
+      //jumping solve
+      private boolean rightChecker = false, leftChecker = false, blocker = false;
+      
+      
     // if killed
        private boolean shattered = false;
        private int shatteredtimer = 0;
@@ -116,10 +120,24 @@ public class Player extends Applet {
         }
         
  
-         System.out.println(currentscore);
+      //   System.out.println(currentscore);
+       //  System.out.println("CHECKER");
+        
+         
 
        
         scoretimer++;
+        //palikan jälkeen jatkuva hyppy
+        if ( blocker == true && rightChecker == true )
+        {
+            right = true;
+        }
+        
+         if ( blocker == true && leftChecker == true )
+        {
+            left = true;
+        }
+        
         
         //tippuminen rotkoon
         if(y >= 1000){
@@ -133,14 +151,16 @@ if ( shattered == false) {
                     
                     || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])) {
                 right = false;
-                System.out.println("RIGHTII");
+                blocker = true;
+             //   System.out.println("RIGHTII");
               }
            
             //left side collision
             if(Collision.playerBlock(new Point(iX - 1, iY + 2), b[i])
                     || Collision.playerBlock(new Point(iX - 1 , iY + height -2),b[i])){
                 left = false;
-                System.out.println("LEFTII");
+                blocker = true;
+            //    System.out.println("LEFTII");
             }
             // Pohja
             if(Collision.playerBlock(new Point(iX + 1, iY - 2), b[i])
@@ -157,6 +177,7 @@ if ( shattered == false) {
                 topCollision = true;
             } else {
                 if (!topCollision && !jumping) {
+                    blocker = false;
                 falling = true;
                   }
               }  
@@ -457,17 +478,25 @@ if ( shattered == false) {
     
     
     public void keyPressed(int k) {
+ 
         if ( k == KeyEvent.VK_RIGHT) {
             right = true;
+            rightChecker = true;
             if ( retryselector == 1 ) retryselector = 0;
             else    retryselector = 1;
         }
+ 
+                
         if ( k == KeyEvent.VK_LEFT) {
             left = true;
+            leftChecker = true;
             if (retryselector == 0) retryselector = 1;
             else    retryselector = 0;
         }
+          
         if ( k == KeyEvent.VK_SPACE && !jumping && !falling) jumping = true;
+    //    if ( k == KeyEvent.VK_RIGHT && jumping && !falling) right = true;
+        
         
         if ( k == KeyEvent.VK_ENTER && shattered ) {
             if ( retryselector == 0 ) {
@@ -481,8 +510,13 @@ if ( shattered == false) {
     }
     
     public void keyReleased(int k) {
-        if ( k == KeyEvent.VK_RIGHT) right = false;
-        if ( k == KeyEvent.VK_LEFT) left = false;
+        if ( k == KeyEvent.VK_RIGHT){ right = false;
+        rightChecker = false;
+        }
+        
+        if ( k == KeyEvent.VK_LEFT){ left = false;
+        leftChecker = false;
+        }
     }
     
     
