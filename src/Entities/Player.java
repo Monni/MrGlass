@@ -149,24 +149,27 @@ public class Player extends Applet {
 if ( shattered == false) {
             if (Collision.playerBlock(new Point(iX + width, iY + 2), b[i]) 
                     
-                    || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])) {
+                    || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])
+                    || Collision.playerBlock(new Point(iX + width, iY + height - 20), b[i])) {
                 right = false;
                 blocker = true;
-             //   System.out.println("RIGHTII");
+                System.out.println("RIGHTII");
               }
            
             //left side collision
             if(Collision.playerBlock(new Point(iX - 1, iY + 2), b[i])
-                    || Collision.playerBlock(new Point(iX - 1 , iY + height -2),b[i])){
+                    || Collision.playerBlock(new Point(iX - 1 , iY + height -2),b[i])
+                    || Collision.playerBlock(new Point(iX - 1 , iY + height -20),b[i])){
                 left = false;
                 blocker = true;
-            //    System.out.println("LEFTII");
+                System.err.println("LEFTII");
             }
             // Pohja
             if(Collision.playerBlock(new Point(iX + 1, iY - 2), b[i])
                     || Collision.playerBlock(new Point( iX + width - 1, iY - 2), b[i])){
                 currentJumpSpeed = 0.3;
             falling = true;
+               // System.err.println("Pohja");
             
             }
             // kävelypinta / top
@@ -175,6 +178,7 @@ if ( shattered == false) {
                  y = b[i].getY() - height;
                 falling = false;
                 topCollision = true;
+                
             } else {
                 if (!topCollision && !jumping) {
                     blocker = false;
