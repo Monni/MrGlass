@@ -60,9 +60,9 @@ public class Level2State extends GameState {
     }
 
     public void init() {
-        player = new Player(18,39, 240, 0); // 15, 600
+        player = new Player(18,39, 15, 600);
         
-        b = new Block[302];
+        b = new Block[313];
         s = new Saw[2];
         goal = new Goal[1];
         p = new Spike[8];
@@ -495,27 +495,22 @@ public class Level2State extends GameState {
        b[300] = new Block (320, 230, 17);
        b[301] = new Block (320, 260, 17);
         
-        // Oikean päässä seinä
-        /*
-        b[232] = new Block (1010, 170, 17);
-        b[233] = new Block (1010, 140, 17);
-        b[234] = new Block (1010, 110, 17);
-        b[235] = new Block (1010, 80, 17);
-        b[236] = new Block (1010, 50, 17);
-        b[237] = new Block (1010, 20, 17);
-        */
-        
         
         // Alun ylöshyppelun putket
-        /*
-        b[190] = new Block (110, 620, 20);
-        b[191] = new Block (20, 540, 20);
-        b[192] = new Block (110, 460, 20);
-        b[193] = new Block (20, 380, 20);
-        b[194] = new Block (110, 300, 20);
-        b[195] = new Block (20, 220, 20);
-        b[196] = new Block (110, 160, 20);
-        */
+        b[302] = new Block (110, 620, 20);
+        b[303] = new Block (20, 540, 20);
+        b[304] = new Block (110, 460, 20);
+        b[305] = new Block (20, 380, 20);
+        b[306] = new Block (110, 300, 20);
+        b[307] = new Block (20, 220, 20);
+        b[308] = new Block (110, 140, 20);
+        b[309] = new Block (20, 60, 20);
+        
+        // Ekaan vasempaan korjauspalat
+        b[310] = new Block (-10, 50, 17);
+        b[311] = new Block (-10, 530, 17);
+        b[312] = new Block (-10, 560, 17);
+        
     }
 
     public void tick() {
