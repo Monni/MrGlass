@@ -170,8 +170,8 @@ if ( shattered == false) {
             
             }
             // kävelypinta / top
-            if(Collision.playerBlock(new Point(iX + 1, iY + height +2), b[i])
-                    || Collision.playerBlock(new Point ( iX + width - 1, iY + height + 2 ), b[i])){
+            if(Collision.playerBlock(new Point(iX + 1, iY + height +0), b[i])
+                    || Collision.playerBlock(new Point ( iX + width - 1, iY + height + 0 ), b[i])){
                  y = b[i].getY() - height;
                 falling = false;
                 topCollision = true;
