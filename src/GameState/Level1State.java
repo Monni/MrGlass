@@ -437,7 +437,7 @@ public class Level1State extends GameState {
       
           font = new Font ("Fixedsys", Font.PLAIN,18);
       g.setFont(font);
-      g.drawString("Score: " + currentscore,1100, 50);
+      g.drawString("Score: " + currentscore,1170, 25);
       
     //palikoiden piirto
       for ( int i = 0; i < b.length; i++) {

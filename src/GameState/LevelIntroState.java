@@ -72,13 +72,12 @@ public class LevelIntroState extends GameState {
         ms = new MovingSaw[1];
         c = new Cannon[0];
         cbl = new CannonBallLeft[0];
-        f = new Flame [2];
+        f = new Flame [0];
         
         
          //moving saw
         ms[0] = new MovingSaw (401 ,590, 400, 700 );
-        f[0] = new Flame ( 100, 579, 1);
-        f[1] = new Flame ( 1000, 579, 0);
+
          //Goal
         goal[0] = new Goal (1200, 560);
        
@@ -303,11 +302,7 @@ public class LevelIntroState extends GameState {
         for ( int i = 0; i < goal.length; i++){
             goal[i].tick();
         }
-        
-        for ( int i = 0; i < f.length; i++){
-            f[i].tick();
-        }
-        
+
       player.tick(b, s, p, pT, goal, ms, c, cbl, f);
       
       
@@ -340,47 +335,23 @@ public class LevelIntroState extends GameState {
       
               font = new Font ("Fixedsys", Font.PLAIN,18);
       g.setFont(font);
-      g.drawString("Score: " + currentscore,1100, 50);
+      g.drawString("Score: " + currentscore,1170, 25);
       
     //palikoiden piirto
       for ( int i = 0; i < b.length; i++) {
           b[i].draw(g);
       }
-      
-      //sahojen piirto
-       for ( int i = 0; i < s.length; i++) {
-          s[i].draw(g);
-      }
+
        //maalin piirto
          for ( int i = 0; i < goal.length; i++){
             goal[i].draw(g);
         }
-         // piikkien piirto
-         for ( int i = 0; i < p.length; i++){
-            p[i].draw(g);
-            
-            // väärinpäin piikkien piirto
-        }
-         for ( int i = 0; i < pT.length; i++){
-            pT[i].draw(g);
-         }
+
          //moving saw
          for ( int i = 0; i < ms.length; i++){
             ms[i].draw(g);
         }
-        //cannon
-         for ( int i = 0; i < c.length; i++){
-            c[i].draw(g);
-        }
-         //cannonballLEFT
-         for ( int i = 0; i < cbl.length; i++){
-            cbl[i].draw(g);
-        }
-         //flame
-         for ( int i = 0; i < f.length; i++){
-            f[i].draw(g);
-        }
-         
+
                      // kuoleman korjatessa
         
          // Story IMG
