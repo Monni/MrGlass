@@ -67,7 +67,7 @@ public class Level2State extends GameState {
         goal = new Goal[1];
         p = new Spike[4];
         pT = new SpikeTurned[0];
-        ms = new MovingSaw[1];
+        ms = new MovingSaw[2];
         c = new Cannon[6];
         cbl = new CannonBallLeft[6];
         f = new Flame[0];
@@ -115,6 +115,7 @@ public class Level2State extends GameState {
         
         // Moving saw
         ms[0] = new MovingSaw(386, 170, 385, 1010);
+        ms[1] = new MovingSaw (939, 170, 385, 1010 );
        
        
        
