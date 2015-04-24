@@ -417,11 +417,7 @@ public class Level1State extends GameState {
       currentscore = player.getCurrentScore();
       
        if ( finished ) gsm.states.push(new Level2State(gsm));
-      
-      
-       // System.out.println(currentscore);
-      
-      
+
     }
 
     public void draw(Graphics g) {

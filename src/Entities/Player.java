@@ -118,15 +118,9 @@ public class Player extends Applet {
         }
         scoreread = true;
         }
-        
- 
-      //   System.out.println(currentscore);
-       //  System.out.println("CHECKER");
-        
-         
 
-       
         scoretimer++;
+        
         //palikan jälkeen jatkuva hyppy
         if ( blocker == true && rightChecker == true )
         {
@@ -148,12 +142,10 @@ public class Player extends Applet {
             //ground collision
 if ( shattered == false) {
             if (Collision.playerBlock(new Point(iX + width, iY + 2), b[i]) 
-                    
                     || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])
                     || Collision.playerBlock(new Point(iX + width, iY + height - 20), b[i])) {
                 right = false;
                 blocker = true;
-                System.out.println("RIGHTII");
               }
            
             //left side collision
@@ -162,14 +154,12 @@ if ( shattered == false) {
                     || Collision.playerBlock(new Point(iX - 1 , iY + height -20),b[i])){
                 left = false;
                 blocker = true;
-                System.err.println("LEFTII");
             }
             // Pohja
             if(Collision.playerBlock(new Point(iX + 1, iY - 2), b[i])
                     || Collision.playerBlock(new Point( iX + width - 1, iY - 2), b[i])){
                 currentJumpSpeed = 0.3;
             falling = true;
-               // System.err.println("Pohja");
             
             }
             // kävelypinta / top
@@ -200,7 +190,6 @@ if ( shattered == false) {
                     //oikeia alakulma
                     || Collision.playerSaw(new Point(iX + width-5, iY + height - 15 ), s[i])) {
                 
-                System.out.println("SAHA RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
                 shattered = true;
               }
@@ -210,14 +199,12 @@ if ( shattered == false) {
             if(Collision.playerSaw(new Point(iX - 10 , iY -15), s[i])         
                     //vasen alakulma
                     || Collision.playerSaw(new Point(iX +3 , iY + height-15 ),s[i])){
-                
-                System.out.println("SAHA LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+
                 jumping = true;
                 shattered = true;
         }
             if(Collision.playerSaw(new Point(iX +5, iY + height-15), s[i])
                     || Collision.playerSaw(new Point ( iX + width -5, iY + height-15 ), s[i])){
-                System.out.println("SAHA TOP");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
                 shattered = true;
             }
@@ -229,7 +216,6 @@ if ( shattered == false) {
                     //oikeia alakulma
                     || Collision.playerMovingSaw(new Point(iX + width-5, iY + height - 15 ), ms[i])) {
                 
-                System.out.println("LIIKKUVASAHA RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
                 shattered = true;
               }
@@ -239,14 +225,13 @@ if ( shattered == false) {
             if(Collision.playerMovingSaw(new Point(iX - 10 , iY -15), ms[i])         
                     //vasen alakulma
                     || Collision.playerMovingSaw(new Point(iX +3 , iY + height-15 ),ms[i])){
-                
-                System.out.println("LIIKKUVASAHA LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+
                 jumping = true;
                 shattered = true;
         }
             if(Collision.playerMovingSaw(new Point(iX +5, iY + height-15), ms[i])
                     || Collision.playerMovingSaw(new Point ( iX + width -5, iY + height-15 ), ms[i])){
-                System.out.println("LIIKKUVASAHA TOP");// tähän mitä tapahtuu kun pelaaja kuolee
+
                 jumping = true;
                 shattered = true;
             }
@@ -258,8 +243,7 @@ if ( shattered == false) {
             if (Collision.playerSpike(new Point(iX + width-5, iY - 15), p[i]) 
                     //oikeia alakulma
                     || Collision.playerSpike(new Point(iX + width-5, iY + height - 15), p[i])) {
-                
-                System.out.println("Spike RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
+
                 jumping = true;
                 shattered = true;
               }
@@ -267,14 +251,13 @@ if ( shattered == false) {
             //left side collision
             if(Collision.playerSpike(new Point(iX + 5, iY -15 ), p[i])
                     || Collision.playerSpike(new Point(iX + 3 , iY + height -15),p[i])){
-                
-                System.out.println("Spike LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
+
                 jumping = true;
                 shattered = true;
         }
              if(Collision.playerSpike(new Point(iX +8, iY + height), p[i])
                     || Collision.playerSpike(new Point ( iX + width - 15, iY + height ), p[i])){
-                System.out.println("Spike TOP");// tähän mitä tapahtuu kun pelaaja kuolee
+
                 jumping = true;
                 shattered = true;
             }
@@ -287,7 +270,6 @@ if ( shattered == false) {
                     //oikeia alakulma
                     || Collision.playerSpikeTurned(new Point(iX + width-7, iY + height - 0), pT[i])) {
                 
-                System.out.println("SpikeTurned RIGHTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
                 shattered = true;
               }
@@ -296,13 +278,12 @@ if ( shattered == false) {
             if(Collision.playerSpikeTurned(new Point(iX + 5, iY -0 ), pT[i])
                     || Collision.playerSpikeTurned(new Point(iX + 7 , iY + height -0),pT[i])){
                 
-                System.out.println("SpikeTurned LEFTII");// tähän mitä tapahtuu kun pelaaja kuolee
                 jumping = true;
                 shattered = true;
         }
              if(Collision.playerSpikeTurned(new Point(iX +7, iY), pT[i])
                     || Collision.playerSpikeTurned(new Point( iX + width - 7, iY), pT[i])){
-                 System.out.println("SpikeTurned BOT");// tähän mitä tapahtuu kun pelaaja kuolee
+
                  jumping = true;
                  shattered = true;
              }
@@ -313,8 +294,6 @@ if ( shattered == false) {
             
             if (Collision.playerGoal(new Point(iX + width-10, iY- 15), goal[i])){ 
                     
-                
-                System.out.println("Maali RIGHTII");// tähän mitä tapahtuu kun pelaaja pääsee maaliin
                 finished = true;
                 
                     if ( finished && scorewritten == false ) {                     // Pisteiden kirjoitus filuun kun maalissa
@@ -339,14 +318,14 @@ if ( shattered == false) {
                     //oikeia alakulma
                     || Collision.playerCannon(new Point(iX + width, iY + height - 2), c[i])) {
                 right = false;
-                System.out.println("CannonRIGHTII");
+                blocker = true;
               }
            
             //left side collision
             if(Collision.playerCannon(new Point(iX - 1, iY + 2), c[i])
                     || Collision.playerCannon(new Point(iX - 1 , iY + height -2),c[i])){
                 left = false;
-                System.out.println("CannonLEFTII");
+                blocker = true;
             }
             // kävelypinta / top
             if(Collision.playerCannon(new Point(iX + 1, iY + height +2), c[i])
@@ -357,6 +336,7 @@ if ( shattered == false) {
             } else {
                 if (!topCollision && !jumping) {
                 falling = true;
+                blocker = false;
                   }
               }    
             }
@@ -366,7 +346,6 @@ if ( shattered == false) {
 
              if (Collision.playerCannonBallLeft(new Point(iX + width - 15, iY + 25), cbl[i]))
                      {
-                System.out.println("CANNONBALL RIGHT");
                 jumping = true;
                 shattered = true;
                 
@@ -376,7 +355,6 @@ if ( shattered == false) {
             if(Collision.playerCannonBallLeft(new Point(iX+ 15 , iY ), cbl[i])
                     || Collision.playerCannonBallLeft(new Point(iX +15 , iY + height - 0 ),cbl[i]))
                     {
-                System.out.println("CANNONBALL LEFT");
                 jumping = true;
                 shattered = true;
             }
@@ -386,8 +364,7 @@ if ( shattered == false) {
             if (Collision.playerFlame(new Point(iX + width-5, iY - 15 ), f[i]) 
                     //oikeia alakulma
                     || Collision.playerFlame(new Point(iX + width-5, iY + height - 15 ), f[i])) {
-                
-                System.out.println("FLAME");// tähän mitä tapahtuu kun pelaaja kuolee
+                shattered = true;
                 jumping = true;
                // shattered = true;
               }
@@ -397,14 +374,13 @@ if ( shattered == false) {
             if(Collision.playerFlame(new Point(iX - 10 , iY -15), f[i])         
                     //vasen alakulma
                     || Collision.playerFlame(new Point(iX +3 , iY + height-15 ),f[i])){
-                
-                System.out.println("FLAME");// tähän mitä tapahtuu kun pelaaja kuolee
+                shattered = true;
                 jumping = true;
                // shattered = true;
         }
             if(Collision.playerFlame(new Point(iX +5, iY + height-15), f[i])
                     || Collision.playerFlame(new Point ( iX + width -5, iY + height-15 ), f[i])){
-                System.out.println("FLAMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");// tähän mitä tapahtuu kun pelaaja kuolee
+                shattered = true;
                 jumping = true;
                 //shattered = true;
             }

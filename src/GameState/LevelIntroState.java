@@ -64,7 +64,7 @@ public class LevelIntroState extends GameState {
     public void init() {
         player = new Player(20,39, 25, 579);
         
-        b = new Block[161];
+        b = new Block[160];
         s = new Saw[0];
         goal = new Goal[1];
         p = new Spike[0];
@@ -82,7 +82,6 @@ public class LevelIntroState extends GameState {
         goal[0] = new Goal (1200, 560);
        
         // Alaosasto vasemmalta oikealle
-        b[160] = new Block (100, 520, 0);
         b[0] = new Block (-10, 620, 0);
         b[1] = new Block (-10, 650, 1);
         b[2] = new Block (-10, 680, 1);
@@ -314,11 +313,8 @@ public class LevelIntroState extends GameState {
       currentscore = player.getCurrentScore();
       xloc = player.getCurrentX();
       
-      //  System.out.println(currentscore);
-      
        if ( finished ) gsm.states.push(new Level1State(gsm));
       
-   //     System.out.println(currentscore);
       
       
     }
