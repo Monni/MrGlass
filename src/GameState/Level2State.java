@@ -62,14 +62,14 @@ public class Level2State extends GameState {
     public void init() {
         player = new Player(18,39, 350, 200); // 15, 600
         
-        b = new Block[259];
+        b = new Block[289];
         s = new Saw[0];
         goal = new Goal[1];
-        p = new Spike[2];
+        p = new Spike[4];
         pT = new SpikeTurned[0];
         ms = new MovingSaw[1];
-        c = new Cannon[5];
-        cbl = new CannonBallLeft[5];
+        c = new Cannon[6];
+        cbl = new CannonBallLeft[6];
         f = new Flame[0];
         
         
@@ -78,11 +78,16 @@ public class Level2State extends GameState {
        
         
         //Goal
-        goal[0] = new Goal (1200, 80);
+        goal[0] = new Goal (1200, 580);
         
      // Spikes
         p[0] = new Spike(200, 350);
         p[1] = new Spike(557, 350);
+        
+        p[2] = new Spike(969, 370);
+        p[3] = new Spike(820, 490);
+                
+                 
         
         
        // Cannon
@@ -91,6 +96,8 @@ public class Level2State extends GameState {
         c[2] = new Cannon(200, 535, 1);
         c[3] = new Cannon(200, 595, 1);
         c[4] = new Cannon(200, 655, 1);
+        
+        c[5] = new Cannon(1245, 110, 0);
                 
         // Cannonball
         cbl[0] = new CannonBallLeft(232, 415, 563, 1);
@@ -98,6 +105,8 @@ public class Level2State extends GameState {
         cbl[2] = new CannonBallLeft(232, 535, 563, 1);
         cbl[3] = new CannonBallLeft(232, 595, 563, 1);
         cbl[4] = new CannonBallLeft(232, 655, 653, 1);
+        
+        cbl[5] = new CannonBallLeft(1245, 110, 825, 0);
         
        
         
@@ -410,11 +419,48 @@ public class Level2State extends GameState {
         b[255] = new Block (320, 100, 17);
         b[256] = new Block (290, 100, 17);
         
+        b[257] = new Block (1130, 135, 17);
+        b[258] = new Block (1160, 135, 17);
+        b[259] = new Block (1190, 135, 17);
+        b[260] = new Block (1220, 135, 17);
+        b[261] = new Block (1250, 135, 17);
+        
+        // Oikean yläreunan tykiltä alaspäin
+        b[262] = new Block (1130, 160, 17);
+        b[263] = new Block (1130, 190, 17);
+        b[264] = new Block (1130, 220, 17);
+        b[265] = new Block (1130, 250, 17);
+        b[266] = new Block (1130, 280, 17);
+        b[267] = new Block (1130, 310, 17);
+        b[268] = new Block (1130, 340, 17);
+        b[269] = new Block (1130, 370, 17);
+        b[270] = new Block (1130, 400, 17);
+        b[271] = new Block (1130, 430, 17);
+        b[272] = new Block (1130, 460, 17);
+        
+        // Hyppelyä
+        
+        b[273] = new Block (1100, 340, 17);
+        b[274] = new Block (1100, 370, 17);
+       
+        b[275] = new Block (980, 400, 17);
+        b[276] = new Block (950, 400, 17);
+        b[277] = new Block (920, 400, 17);
+        b[278] = new Block (980, 430, 17);
+        b[279] = new Block (950, 430, 17);
+        b[280] = new Block (920, 430, 17);
+        
+        b[281] = new Block (830, 520, 17);
+        b[282] = new Block (800, 520, 17);
+        b[283] = new Block (770, 520, 17);
+        b[284] = new Block (830, 550, 17);
+        b[285] = new Block (800, 550, 17);
+        b[286] = new Block (770, 550, 17);
         
         
         // Hyppypalikka aiemmille suorille
-        b[257] = new Block (320, 230, 17);
-        b[258] = new Block (320, 260, 17);
+       b[287] = new Block (320, 230, 17);
+       b[288] = new Block (320, 260, 17);
         
         // Oikean päässä seinä
         /*
