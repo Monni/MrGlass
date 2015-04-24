@@ -54,6 +54,8 @@ public class Player extends Applet {
        
       private final double moveSpeed = 2.5;
       
+      private boolean flamestatus = false;
+      
       //jumping solve
       private boolean rightChecker = false, leftChecker = false, blocker = false;
       
@@ -359,8 +361,11 @@ if ( shattered == false) {
                 shattered = true;
             }
         }
+         
+        if ( flamestatus ) {
          // FLAME COLLISION
          for (int i = 0; i < f.length; i++){
+             
             if (Collision.playerFlame(new Point(iX + width-5, iY - 15 ), f[i]) 
                     //oikeia alakulma
                     || Collision.playerFlame(new Point(iX + width-5, iY + height - 15 ), f[i])) {
@@ -368,6 +373,7 @@ if ( shattered == false) {
                 jumping = true;
                // shattered = true;
               }
+         
            
             //left side collision
        //     vasen yläkulma
@@ -385,7 +391,7 @@ if ( shattered == false) {
                 //shattered = true;
             }
         }
-         
+        }
         topCollision = false;
         
         if (right) {
@@ -561,4 +567,8 @@ if ( shattered == false) {
                         }
      }
     
+         public void setFlameStatus( boolean flamestatus) {
+             this.flamestatus = flamestatus;
+             
+         }
 }

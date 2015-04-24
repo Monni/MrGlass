@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 public class Flame extends Rectangle {
     
     private int suunta;
+    private int flamecounter = 0;
     
     public Flame (int x, int y, int suunta) {
         setBounds(x, y, 60, 32);
@@ -25,6 +26,10 @@ public class Flame extends Rectangle {
     }
     
      public void tick(){
+         flamecounter++;
+         if ( flamecounter > 360 ) {
+             flamecounter = 0;
+         }
      
     }
     public Image getFlame(){
@@ -42,6 +47,12 @@ public class Flame extends Rectangle {
     }
 
     public void draw (Graphics g) {
+       if ( flamecounter < 180 ) {
          g.drawImage(getFlame(), (int) x, (int) y, null);
+        }
+    }
+    
+    public int getFlameCounter() {
+        return flamecounter;
     }
 }

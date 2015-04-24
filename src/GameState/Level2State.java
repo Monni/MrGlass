@@ -41,6 +41,7 @@ public class Level2State extends GameState {
     private int currentscore;
     
     private int xloc, yloc;
+    private int flamecounter = 0;
      private Font font;
     
       
@@ -70,7 +71,7 @@ public class Level2State extends GameState {
         ms = new MovingSaw[2];
         c = new Cannon[7];
         cbl = new CannonBallLeft[7];
-        f = new Flame[0];
+        f = new Flame[8];
         
         
        
@@ -511,6 +512,16 @@ public class Level2State extends GameState {
         b[311] = new Block (-10, 530, 17);
         b[312] = new Block (-10, 560, 17);
         
+        // Flames
+        f[0] = new Flame(50, 617, 0);
+        f[1] = new Flame(50, 537, 1);
+        f[2] = new Flame(50, 457, 0);
+        f[3] = new Flame(50, 377, 1);
+        f[4] = new Flame(50, 297, 0);
+        f[5] = new Flame(50, 217, 1);
+        f[6] = new Flame(50, 137, 0);
+        f[7] = new Flame(50, 57, 1);
+        
     }
 
     public void tick() {
@@ -546,6 +557,19 @@ public class Level2State extends GameState {
         for ( int i = 0; i < cbl.length; i++){
             cbl[i].tick();
         }
+        
+        // Flame check
+        for ( int i = 0; i < f.length; i++ ) {
+            f[i].tick();
+        }
+        
+         flamecounter = f[0].getFlameCounter();
+        if ( flamecounter <= 180 ) {
+            player.setFlameStatus(true);
+        } else if ( flamecounter > 180 ) {
+            player.setFlameStatus(false);
+        }
+        
       player.tick(b, s, p, pT, goal, ms, c, cbl, f);
       
       
@@ -615,6 +639,11 @@ public class Level2State extends GameState {
          //cannonballLEFT
          for ( int i = 0; i < cbl.length; i++){
             cbl[i].draw(g);
+        }
+      
+          // Flames
+         for ( int i = 0; i < f.length; i++){
+            f[i].draw(g);
         }
          
          // Fake cabin
