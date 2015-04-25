@@ -65,10 +65,12 @@ public class MenuState extends GameState {
         Image creditsSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\credits_selected.png");
         Image quitSelected = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitgame_selected.png");
         
-        Image blurredbackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\creditsblurredbackground.png");
+        Image blurredbackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\blurredbackground.png");
         Image authors = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\authors.png");
         Image quitquestion = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitquestion.png");
         Image quitselector = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\quitselector.gif");
+        
+        Image highscore = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\highscore.png");
         
         tracker.addImage(menubackground, 0);
         tracker.addImage(titleImg, 1);
@@ -85,6 +87,7 @@ public class MenuState extends GameState {
         tracker.addImage(authors, 8);
         tracker.addImage(quitquestion, 9);
         tracker.addImage(quitselector, 10);
+        tracker.addImage(highscore, 11);
         
         try {
             tracker.waitForAll();
@@ -133,6 +136,9 @@ public class MenuState extends GameState {
               g.drawImage(quitselector, 520, 370, null);
           else if ( quitSelection == 1 )
               g.drawImage(quitselector, 665, 370, null);
+      } else if ( selected == 1 ) {
+          g.drawImage(blurredbackground, 0, 0, null);
+          g.drawImage(highscore, 440, 250, null);
       }
        
 
@@ -169,10 +175,9 @@ public class MenuState extends GameState {
                 selected = 0;
             }else if(currentSelection == 0 ){
                 ScoreCounterReset();
-                gsm.states.push(new LevelEndState(gsm));                      // Start Game
+                gsm.states.push(new LevelEndState(gsm));                        // Start Game
             } else if (currentSelection == 1){
-               // selected = 1;
-                // High Scores
+               selected = 1;                                                    // High Scores
             }else if (currentSelection == 2){                                   // Credits
                 selected = 2;
             }else if (currentSelection == 3) {
@@ -180,8 +185,6 @@ public class MenuState extends GameState {
             }
         }
         
-
-                
                 
         if (k == KeyEvent.VK_ESCAPE) {
             if ( selected == 0 ) {
