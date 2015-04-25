@@ -30,8 +30,8 @@ public class LevelEndState extends GameState {
     
     private final Image shatteredMenu = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\shattered.png");
     private final Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
-    private final Image fakecabinImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\fakecabin.png");
-    private final Image fakecabinInfo = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\fakecabininfo.png");
+    private final Image cabinOFF = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\cabin_OFF.png");
+    private final Image cabinON = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\cabin_ON.png");
     
     private Player player;
     private boolean shattered, finished;
@@ -39,7 +39,6 @@ public class LevelEndState extends GameState {
     private int currentscore;
     
     private int xloc, yloc;
-    private int flamecounter = 0;
     private Font font;
     
       
@@ -287,11 +286,9 @@ public class LevelEndState extends GameState {
             f[i].draw(g);
         }
          
-         // Fake cabin
-         g.drawImage(fakecabinImg, 375, 9, null);
-         if ( xloc > 300 && xloc < 660 && yloc < 70 ) {
-             g.drawImage(fakecabinInfo, 530, 20, null);
-         }
+         // Cabin OFF
+         g.drawImage(cabinOFF, 700, 591, null);
+         
          
                      // kuoleman korjatessa
         
