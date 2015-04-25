@@ -169,7 +169,7 @@ public class MenuState extends GameState {
                 selected = 0;
             }else if(currentSelection == 0 ){
                 ScoreCounterReset();
-                gsm.states.push(new Level2State(gsm));                      // Start Game
+                gsm.states.push(new LevelEndState(gsm));                      // Start Game
             } else if (currentSelection == 1){
                // selected = 1;
                 // High Scores
