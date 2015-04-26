@@ -35,9 +35,15 @@ public class LevelEndState extends GameState {
     private final Image EndText = Toolkit.getDefaultToolkit().getImage("src\\resources\\snowworld\\Endtext.png");
     
     private Player player;
-    private boolean shattered, finished;
+    private boolean shattered;
+            private boolean finished = false;
+    private boolean jumped = false;
+    
     private int retryselector;
     private int currentscore;
+    private int waitcounter = 0;
+    
+    
     
     private int xloc, yloc;
     private Font font;
@@ -176,40 +182,7 @@ public class LevelEndState extends GameState {
         for ( int i = 0; i<b.length; i++) {
             b[i].tick();
         }
-        // sahojen tsekkaus
-        for ( int i = 0; i<s.length; i++) {
-            s[i].tick();
-        }
-        //maalin tsekkaus
-        for ( int i = 0; i < goal.length; i++){
-            goal[i].tick();
-        }
-        //piikkien tsekkaus
-        for ( int i = 0; i < p.length; i++){
-            p[i].tick();
-        }
-        //käännettyjen piikkien tsekkaus
-        for ( int i = 0; i < pT.length; i++){
-            pT[i].tick();
-        }
-        //moving saw
-        for ( int i = 0; i < ms.length; i++){
-            ms[i].tick();
-        }
-        //cannon
-        for ( int i = 0; i < c.length; i++){
-            c[i].tick();
-        }
-        //cannonBALL LEFT
-        for ( int i = 0; i < cbl.length; i++){
-            cbl[i].tick();
-        }
-        
-        // Flame check
-        for ( int i = 0; i < f.length; i++ ) {
-            f[i].tick();
-        }
-    
+       
         
       player.tick(b, s, p, pT, goal, ms, c, cbl, f);
       
@@ -223,6 +196,33 @@ public class LevelEndState extends GameState {
       yloc = player.getCurrentY();
       
       
+      // Set player auto movement
+      if ( xloc < 300 ) {
+      player.setMovement(false, true, false);
+      } else if ( xloc >= 300 && xloc <= 320 && waitcounter <= 120 && !jumped ) {
+          player.setMovement(false, false, false);
+          waitcounter++;
+      } else if ( xloc >= 300 && xloc <= 320 && waitcounter > 120 && !jumped ) {
+          player.setMovement(false, false, true);
+          jumped = true;
+          waitcounter = 0;
+      } else if ( xloc >= 300 && xloc <= 320 && waitcounter <= 150 && jumped ) {
+          waitcounter++;
+      } else if ( xloc >= 300 && xloc <= 710 && waitcounter > 150 && jumped ) {
+          player.setMovement(false, true, false);
+          waitcounter = 0;
+      } else if ( xloc > 710 && xloc < 860 && waitcounter < 120 ) {
+          player.setMovement(false, false, false);
+          waitcounter++;
+      } else if ( xloc > 710 && xloc < 860 && waitcounter >= 120 ) {
+          player.setMovement(false, true, false);
+      } else if ( xloc >= 860 ) {
+          player.setMovement(false, false, false);
+          player.setShattered(true);
+          finished = true;
+      }
+      
+    
       
       
        // System.out.println(currentscore);
@@ -287,11 +287,15 @@ public class LevelEndState extends GameState {
         }
          
                // Cabin OFF
+         if ( !finished ) {
          g.drawImage(cabinOFF, 730, 502, null);
-         
+         } else {
+             g.drawImage(cabinON, 730, 502, null);
+         }
          // End text
+         if ( jumped ) {
          g.drawImage(EndText, 25, 25, null);
-         
+         }
         
         //pelaajan piirto
       player.draw(g);  

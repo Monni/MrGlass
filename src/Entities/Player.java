@@ -569,6 +569,19 @@ if ( shattered == false) {
     
          public void setFlameStatus( boolean flamestatus) {
              this.flamestatus = flamestatus;
-             
+         }
+         
+         public void setMovement(boolean left, boolean right, boolean jumping) {
+             this.left = left;
+             this.right = right;
+             this.jumping = jumping;
+         }
+         
+         public void setShattered (boolean shattered) {
+             this.shattered = shattered;
+         }
+         
+         public boolean getFalling() {
+             return falling;
          }
 }
