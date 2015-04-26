@@ -149,6 +149,22 @@ public class Block extends Rectangle {
             ImageIcon blockStyle = new ImageIcon("src\\resources\\objects\\putki.png");
         return blockStyle.getImage();
         }
+        
+        /////////////////////
+        //// SNOW WORLD ////
+        ////////////////////
+        //suora
+        if(style == 21) {
+            ImageIcon blockStyle = new ImageIcon("src\\resources\\snowworld\\suora.png");
+        return blockStyle.getImage();
+        }
+        // Keskipala
+        if(style == 22) {
+           ImageIcon blockStyle = new ImageIcon("src\\resources\\snowworld\\keskipala.png");
+        return blockStyle.getImage();
+        }
+        
+        
         // nollalla suora 
          else {
         ImageIcon blockStyle = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\grassworld\\suora.png");
