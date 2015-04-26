@@ -33,8 +33,6 @@ import java.io.FileWriter;
  */
 public class Player extends Applet {
 
-    
-    
     FileWriter fw = null;
     FileReader fr = null;
     BufferedWriter bw;
@@ -49,8 +47,6 @@ public class Player extends Applet {
     private final Image leftrunningImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassman_left_running.gif");
     private final Image rightshatteredImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassmanright_shattered.gif");
     private final Image leftshatteredImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\glassman\\glassmanleft_shattered.gif");
-    
-    
        
       private final double moveSpeed = 2.5;
       
@@ -60,27 +56,26 @@ public class Player extends Applet {
       //jumping solve
       private boolean rightChecker = false, leftChecker = false, blocker = false;
       
-      
     // if killed
-       private boolean shattered = false;
-       private int shatteredtimer = 0;
-       private int retryselector = 0;
-       private boolean rightshattered;
-       private boolean leftshattered;
+    private boolean shattered = false;
+    private int shatteredtimer = 0;
+    private int retryselector = 0;
+    private boolean rightshattered;
+    private boolean leftshattered;
        
-       // Score
-       private int startscore;
-       private int scoretimer;
-       private int currentscore;
-       private boolean finished = false;
+    // Score
+    private int startscore;
+    private int scoretimer;
+    private int currentscore;
+    private boolean finished = false;
        
-       // Score written
-       private boolean scorewritten = false;
-       private boolean scoreread = false;
+    // Score written
+    private boolean scorewritten = false;
+    private boolean scoreread = false;
     
     //bounds
-   private double x, y;
-   private int width, height;
+    private double x, y;
+    private int width, height;
     
     //jumpSpeed
     private double jumpSpeed = 4;
@@ -108,17 +103,9 @@ public class Player extends Applet {
         int iX = (int)x;
         int iY = (int)y;
         
-       
         
         if ( scoreread == false ) {
-        try {
-        fr = new FileReader("scorecounter.txt");
-        br = new BufferedReader(fr);
-        startscore = Integer.parseInt(br.readLine());
-        br.close();
-        } catch (Exception e) {
-            System.out.println("Fatal error reading scorefile!");
-        }
+            getScoreCounter();
         scoreread = true;
         }
 
@@ -427,9 +414,6 @@ public class Player extends Applet {
             currentFallSpeed = .1;
         }
          
-         
-         
-         
         }
     
     
@@ -553,18 +537,29 @@ public class Player extends Applet {
         this.mediachecked = true;
     }
     
-         public void ScoreCounterReset() {
-                             // Pisteiden kirjoitus filuun kun maalissa
-                        try {
-                            fw = new FileWriter("scorecounter.txt");
-                            bw = new BufferedWriter(fw);
-                            bw.write(String.valueOf(10000));
-                            bw.newLine();
-                            bw.close();
-                        } catch(Exception e){
-                            System.out.println("Fatal error resetting scorefile!");
-                        }
-     }
+        public void ScoreCounterReset() {
+            // Pisteiden kirjoitus filuun kun maalissa
+            try {
+                fw = new FileWriter("scorecounter.txt");
+                bw = new BufferedWriter(fw);
+                bw.write(String.valueOf(10000));
+                bw.newLine();
+                bw.close();
+                } catch(Exception e){
+                    System.out.println("Fatal error resetting scorefile!");
+                }
+        }
+         
+         public void getScoreCounter() {
+                     try {
+        fr = new FileReader("scorecounter.txt");
+        br = new BufferedReader(fr);
+        startscore = Integer.parseInt(br.readLine());
+        br.close();
+        } catch (Exception e) {
+            System.out.println("Fatal error reading scorefile!");
+        }
+         }
     
          public void setFlameStatus( boolean flamestatus) {
              this.flamestatus = flamestatus;
