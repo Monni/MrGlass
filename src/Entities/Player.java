@@ -241,7 +241,7 @@ public class Player extends Applet {
         }
         
         //piikkien collision
-        for (int i = 0; i < p.length; i++){
+         for (int i = 0; i < p.length; i++){
             
             if (Collision.playerSpike(new Point(iX + width-5, iY - 15), p[i]) 
                     //oikeia alakulma
@@ -258,8 +258,8 @@ public class Player extends Applet {
                 jumping = true;
                 shattered = true;
         }
-             if(Collision.playerSpike(new Point(iX +8, iY + height), p[i])
-                    || Collision.playerSpike(new Point ( iX + width - 15, iY + height ), p[i])){
+             if(Collision.playerSpike(new Point(iX +8, iY + height- 3), p[i])
+                    || Collision.playerSpike(new Point ( iX + width - 0, iY + height ), p[i])){
 
                 jumping = true;
                 shattered = true;
@@ -347,11 +347,11 @@ public class Player extends Applet {
          //CANNONBALLLEFT COLLISION
          for (int i = 0; i < cbl.length; i++){
 
-             if (Collision.playerCannonBallLeft(new Point(iX + width - 15, iY + 25), cbl[i]))
+            if (Collision.playerCannonBallLeft(new Point(iX + width - 15, iY + 25), cbl[i])
+                     ||Collision.playerCannonBallLeft(new Point(iX , iY + 3), cbl[i]))
                      {
                 jumping = true;
-                shattered = true;
-                
+                shattered = true;   
              }
              
             //left side collision
