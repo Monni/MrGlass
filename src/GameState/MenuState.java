@@ -15,7 +15,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.MediaTracker;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +34,11 @@ public class MenuState extends GameState {
     private int quitSelection = 0;
     private int selected;
     private MediaTracker tracker;
+    Font font;
+    
+    FileReader fr = null;
+    BufferedReader br;
+    private int highscorepoints;
     
     
     
@@ -40,6 +47,7 @@ public class MenuState extends GameState {
     }
 
     public void init() {
+        getHighScore();
         
     }
 
@@ -48,6 +56,9 @@ public class MenuState extends GameState {
     }
 
     public void draw(Graphics g) {
+        
+        font = new Font ("Fixedsys", Font.BOLD,24);
+        g.setFont(font);
         
 // MediaTracker
         tracker = new MediaTracker(this);
@@ -139,6 +150,7 @@ public class MenuState extends GameState {
       } else if ( selected == 1 ) {
           g.drawImage(blurredbackground, 0, 0, null);
           g.drawImage(highscore, 440, 250, null);
+          g.drawString(highscorepoints+"", 600, 340);
       }
        
 
@@ -175,7 +187,7 @@ public class MenuState extends GameState {
                 selected = 0;
             }else if(currentSelection == 0 ){
                 ScoreCounterReset();
-                gsm.states.push(new LevelEndState(gsm));                        // Start Game
+                gsm.states.push(new LevelIntroState(gsm));                        // Start Game
             } else if (currentSelection == 1){
                selected = 1;                                                    // High Scores
             }else if (currentSelection == 2){                                   // Credits
@@ -219,6 +231,18 @@ public class MenuState extends GameState {
                         } catch(Exception e){
                             System.out.println("Fatal error resetting scorefile!");
                         }
+     }
+     
+     public void getHighScore() {
+         try {
+            fr = new FileReader("highscore.txt");
+            br = new BufferedReader(fr);
+            this.highscorepoints = Integer.parseInt(br.readLine());
+            br.close();
+        }   catch (Exception e) {
+                System.out.println("Fatal error reading scorefile!");
+            }
+     
      }
      
 }

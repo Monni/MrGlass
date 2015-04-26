@@ -44,7 +44,7 @@ public class LevelEndState extends GameState {
     private final Image EndText = Toolkit.getDefaultToolkit().getImage("src\\resources\\snowworld\\Endtext.png");
     
     private Player player;
-    private boolean finished = false;
+    private boolean finished = true;
     private boolean jumped = false;
  
     private int waitcounter = 0;
@@ -216,6 +216,7 @@ public class LevelEndState extends GameState {
       }
          if ( gamescore > highscore ) {
             newhighscore = true;
+            setHighScore();
         }
       xloc = player.getCurrentX();
        
@@ -262,9 +263,8 @@ public class LevelEndState extends GameState {
         ImageIcon ic2 = new ImageIcon("src\\resources\\background\\TaustaEnd.png");
         g.drawImage(ic2.getImage(), 0, 0, null);
         
-        font = new Font ("Fixedsys", Font.PLAIN,18);
-      g.setFont(font);
-      g.drawString("Score: " + currentscore,1170, 25);
+        font = new Font ("Fixedsys", Font.PLAIN,24);
+        g.setFont(font);
       
 
       
@@ -327,8 +327,11 @@ public class LevelEndState extends GameState {
         // Mökille päästessä
         if ( finished && newhighscore ) {
             g.drawImage(newhighscoreImg, 440, 250, this);
+            g.drawString(gamescore + " points" ,570, 350);
         } else if ( finished && !newhighscore ) {
             g.drawImage(nonewwhighscoreImg, 440, 250, this);
+            g.drawString(highscore+"", 600, 325);
+            g.drawString(gamescore+"", 600, 380);
         }
          
     }
@@ -356,5 +359,16 @@ public class LevelEndState extends GameState {
             }
     }
     
+    public void setHighScore() {
+        try {
+            fw = new FileWriter("highscore.txt");
+            bw = new BufferedWriter(fw);
+            bw.write(String.valueOf(this.gamescore));
+            bw.newLine();
+            bw.close();
+            } catch(Exception e){
+                System.out.println("Fatal error setting highscorefile!");
+            }
+    }
     
 }

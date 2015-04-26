@@ -581,10 +581,7 @@ public class Level2State extends GameState {
       xloc = player.getCurrentX();
       yloc = player.getCurrentY();
       
-      
-      
-      
-       // System.out.println(currentscore);
+       if ( finished ) gsm.states.push(new LevelEndState(gsm));
       
       
     }
