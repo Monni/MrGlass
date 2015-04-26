@@ -366,9 +366,9 @@ if ( shattered == false) {
          // FLAME COLLISION
          for (int i = 0; i < f.length; i++){
              
-            if (Collision.playerFlame(new Point(iX + width-5, iY - 15 ), f[i]) 
+            if (Collision.playerFlame(new Point(iX + width-5, iY +0 ), f[i]) 
                     //oikeia alakulma
-                    || Collision.playerFlame(new Point(iX + width-5, iY + height - 15 ), f[i])) {
+                    || Collision.playerFlame(new Point(iX + width-5, iY + height + 0 ), f[i])) {
                 shattered = true;
                 jumping = true;
                // shattered = true;
@@ -377,9 +377,9 @@ if ( shattered == false) {
            
             //left side collision
        //     vasen yläkulma
-            if(Collision.playerFlame(new Point(iX - 10 , iY -15), f[i])         
+            if(Collision.playerFlame(new Point(iX - 0 , iY -0), f[i])         
                     //vasen alakulma
-                    || Collision.playerFlame(new Point(iX +3 , iY + height-15 ),f[i])){
+                    || Collision.playerFlame(new Point(iX +3 , iY + height-2 ),f[i])){
                 shattered = true;
                 jumping = true;
                // shattered = true;
