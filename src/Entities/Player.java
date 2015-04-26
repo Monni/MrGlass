@@ -487,11 +487,9 @@ public class Player extends Applet {
         
         if ( k == KeyEvent.VK_ENTER && shattered ) {
             if ( retryselector == 0 ) {
-                rightshatteredImg.flush();      // Nollaa Playerin hajoamisanimaation
-                leftshatteredImg.flush();
+                Flush();      // Nollaa Playerin hajoamisanimaation
             } else {
-                rightshatteredImg.flush();      // Nollaa Playerin hajoamisanimaation
-                leftshatteredImg.flush();
+                Flush();      // Nollaa Playerin hajoamisanimaation
             }
         }
     }
@@ -585,5 +583,9 @@ public class Player extends Applet {
          public void setMovementDisabled(boolean movementdisabled) {
              this.movementdisabled = movementdisabled;
          }
-         
+ 
+         public void Flush() {
+          rightshatteredImg.flush();
+          leftshatteredImg.flush();
+         }
 }
