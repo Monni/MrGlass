@@ -43,9 +43,6 @@ public class LevelIntroState extends GameState {
     private int currentscore;
     private int xloc;
     
-    
-    private int testi = 0;
-    
     private Spike[] p;
     private SpikeTurned[] pT;
     private Block[] b;
@@ -73,8 +70,7 @@ public class LevelIntroState extends GameState {
         c = new Cannon[0];
         cbl = new CannonBallLeft[0];
         f = new Flame [0];
-        
-        
+    
          //moving saw
         ms[0] = new MovingSaw (401 ,590, 400, 700 );
 
@@ -315,42 +311,37 @@ public class LevelIntroState extends GameState {
       
        if ( finished ) gsm.states.push(new Level1State(gsm));
       
-      
-      
     }
 
     public void draw(Graphics g) {
-        
-
         
         // taustan piirto
         ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\background\\TaustaMap1.png");
         g.drawImage(ic.getImage(),0,0,null);
         
         //pelaajan piirto
-      player.draw(g);  
+        player.draw(g);  
       
-              font = new Font ("Fixedsys", Font.PLAIN,18);
+      font = new Font ("Fixedsys", Font.PLAIN,18);
       g.setFont(font);
       g.drawString("Score: " + currentscore,1170, 25);
       
     //palikoiden piirto
-      for ( int i = 0; i < b.length; i++) {
+        for ( int i = 0; i < b.length; i++) {
           b[i].draw(g);
-      }
+        }
 
-       //maalin piirto
-         for ( int i = 0; i < goal.length; i++){
+    //maalin piirto
+        for ( int i = 0; i < goal.length; i++){
             goal[i].draw(g);
         }
 
          //moving saw
-         for ( int i = 0; i < ms.length; i++){
+        for ( int i = 0; i < ms.length; i++){
             ms[i].draw(g);
         }
 
-                     // kuoleman korjatessa
-        
+  
          // Story IMG
          g.drawImage(storyImg, 100, 50, null);
          
@@ -368,25 +359,20 @@ public class LevelIntroState extends GameState {
            else if ( retryselector == 1 )
                g.drawImage(selectorImg, 627, 381, null);
         }
-        
-       
-         
     }
 
     public void keyPressed(int k) {
      player.keyPressed(k);
-     if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 1 )
+        if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 1 )
          gsm.states.push(new MenuState(gsm));
-     else if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 0 ) {
+        else if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 0 ) {
          player.ScoreCounterReset();
          gsm.states.push(new LevelIntroState(gsm));
-     }
+        }
     }
 
     public void keyReleased(int k) {
        player.keyReleased(k);
     }
-    
-    
     
 }

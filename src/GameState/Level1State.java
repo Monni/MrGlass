@@ -38,8 +38,6 @@ public class Level1State extends GameState {
     private int retryselector;
     private int currentscore;
     
-    private int testi = 0;
-    
     private Font font;
     private Spike[] p;
     private SpikeTurned[] pT;
@@ -422,8 +420,6 @@ public class Level1State extends GameState {
 
     public void draw(Graphics g) {
         
-    
-        
         // taustan piirto
         ImageIcon ic = new ImageIcon("src\\jamk\\fi\\MrGlass\\images\\background\\TaustaMap1.png");
         g.drawImage(ic.getImage(),0,0,null);
@@ -431,7 +427,7 @@ public class Level1State extends GameState {
         //pelaajan piirto
       player.draw(g);  
       
-          font = new Font ("Fixedsys", Font.PLAIN,18);
+      font = new Font ("Fixedsys", Font.PLAIN,18);
       g.setFont(font);
       g.drawString("Score: " + currentscore,1170, 25);
       
@@ -452,7 +448,7 @@ public class Level1State extends GameState {
          for ( int i = 0; i < p.length; i++){
             p[i].draw(g);
             
-            // väärinpäin piikkien piirto
+        // väärinpäin piikkien piirto
         }
          for ( int i = 0; i < pT.length; i++){
             pT[i].draw(g);
@@ -470,8 +466,7 @@ public class Level1State extends GameState {
             cbl[i].draw(g);
         }
          
-                     // kuoleman korjatessa
-        
+        // kuoleman korjatessa
         if ( shattered ) {
             g.drawImage(shatteredMenu, 440, 250, this);
             if ( retryselector == 0 )
@@ -490,13 +485,10 @@ public class Level1State extends GameState {
          player.ScoreCounterReset();
          gsm.states.push(new LevelIntroState(gsm));
      }
-         
     }
 
     public void keyReleased(int k) {
        player.keyReleased(k);
     }
-    
-    
     
 }

@@ -5,22 +5,17 @@
  */
 package GameState;
 
-import Game.GamePanel;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import java.awt.MediaTracker;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -41,29 +36,25 @@ public class MenuState extends GameState {
     private int highscorepoints;
     
     
-    
     public MenuState(GameStateManager gsm) {
         super(gsm);
     }
 
     public void init() {
         getHighScore();
-        
     }
 
     public void tick() {
-      
     }
 
     public void draw(Graphics g) {
-        
         font = new Font ("Fixedsys", Font.BOLD,24);
         g.setFont(font);
         
-// MediaTracker
+        // MediaTracker
         tracker = new MediaTracker(this);
         
-// Valikon median lataus
+        // Valikon median lataus
         Image menubackground = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\menubackground.png");
         Image titleImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\title.png");
         Image startImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\startgame.png");
@@ -83,6 +74,7 @@ public class MenuState extends GameState {
         
         Image highscore = Toolkit.getDefaultToolkit().getImage("src\\resources\\mainmenu\\highscore.png");
         
+        // MT
         tracker.addImage(menubackground, 0);
         tracker.addImage(titleImg, 1);
         tracker.addImage(scoreImg, 2);
@@ -152,8 +144,6 @@ public class MenuState extends GameState {
           g.drawImage(highscore, 440, 250, null);
           g.drawString(highscorepoints+"", 600, 340);
       }
-       
-
     }
 
     
@@ -187,7 +177,7 @@ public class MenuState extends GameState {
                 selected = 0;
             }else if(currentSelection == 0 ){
                 ScoreCounterReset();
-                gsm.states.push(new LevelIntroState(gsm));                        // Start Game
+                gsm.states.push(new LevelEndState(gsm));                        // Start Game
             } else if (currentSelection == 1){
                selected = 1;                                                    // High Scores
             }else if (currentSelection == 2){                                   // Credits
@@ -197,7 +187,6 @@ public class MenuState extends GameState {
             }
         }
         
-                
         if (k == KeyEvent.VK_ESCAPE) {
             if ( selected == 0 ) {
                 selected = 3;
@@ -220,20 +209,20 @@ public class MenuState extends GameState {
          return ic.getImage();
      }
      
-     public void ScoreCounterReset() {
-                             // Pisteiden kirjoitus filuun kun maalissa
-                        try {
-                            fw = new FileWriter("scorecounter.txt");
-                            bw = new BufferedWriter(fw);
-                            bw.write(String.valueOf(10000));
-                            bw.newLine();
-                            bw.close();
-                        } catch(Exception e){
-                            System.out.println("Fatal error resetting scorefile!");
-                        }
-     }
+    public void ScoreCounterReset() {
+                             // Pisteiden nollaus
+        try {
+            fw = new FileWriter("scorecounter.txt");
+            bw = new BufferedWriter(fw);
+            bw.write(String.valueOf(10000));
+            bw.newLine();
+            bw.close();
+            } catch(Exception e){
+               System.out.println("Fatal error resetting scorefile!");
+            }
+    }
      
-     public void getHighScore() {
+    public void getHighScore() {
          try {
             fr = new FileReader("highscore.txt");
             br = new BufferedReader(fr);
@@ -242,7 +231,5 @@ public class MenuState extends GameState {
         }   catch (Exception e) {
                 System.out.println("Fatal error reading scorefile!");
             }
-     
-     }
-     
+    }
 }

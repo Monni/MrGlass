@@ -583,7 +583,6 @@ public class Level2State extends GameState {
       
        if ( finished ) gsm.states.push(new LevelEndState(gsm));
       
-      
     }
 
     public void draw(Graphics g) {

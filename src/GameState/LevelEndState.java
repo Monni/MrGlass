@@ -48,24 +48,17 @@ public class LevelEndState extends GameState {
     private boolean jumped = false;
  
     private int waitcounter = 0;
+    private int finishcounter = 0;
     
     // Scores
-    private int currentscore;
     private int gamescore;
     private int highscore;
     private boolean newhighscore;
     private boolean scoreGet = false;
     
-
-    
-    
-    
-    private int xloc, yloc;
+    private int xloc;
     private Font font;
     
-    
-   
-      
     private Spike[] p;
     private SpikeTurned[] pT;
     private Block[] b;
@@ -87,8 +80,6 @@ public class LevelEndState extends GameState {
         getHighScore();
         
         
-       
-        
         b = new Block[88];
         s = new Saw[0];
         goal = new Goal[0];
@@ -98,7 +89,6 @@ public class LevelEndState extends GameState {
         c = new Cannon[0];
         cbl = new CannonBallLeft[0];
         f = new Flame[0];
-        
         
         
         // Blocks
@@ -204,23 +194,22 @@ public class LevelEndState extends GameState {
         for ( int i = 0; i<b.length; i++) {
             b[i].tick();
         }
-       
         
       player.tick(b, s, p, pT, goal, ms, c, cbl, f);
-      
       
       // Haetaan pelaajan tila ja pisteet
         if ( !scoreGet ) {
       gamescore = player.getCurrentScore();
       scoreGet = true;
-      }
-         if ( gamescore > highscore ) {
+        }
+        
+        if ( gamescore > highscore ) {
             newhighscore = true;
             setHighScore();
         }
-      xloc = player.getCurrentX();
+        
+        xloc = player.getCurrentX();
        
-      
       
       // Set player auto movement
       if ( xloc < 300 ) {
@@ -237,14 +226,15 @@ public class LevelEndState extends GameState {
       } else if ( xloc >= 300 && xloc <= 710 && waitcounter > 150 && jumped ) {
           player.setMovement(false, true, false);
           waitcounter = 0;
-      } else if ( xloc > 710 && xloc < 860 && waitcounter < 120 ) {
+      } else if ( xloc > 710 && xloc < 860 && waitcounter < 100 ) {
           player.setMovement(false, false, false);
           waitcounter++;
-      } else if ( xloc > 710 && xloc < 860 && waitcounter >= 120 ) {
+      } else if ( xloc > 710 && xloc < 860 && waitcounter >= 100 ) {
           player.setMovement(false, true, false);
       } else if ( xloc >= 860 ) {
           player.setMovement(false, false, false);
           player.setShattered(true);
+          finishcounter++;
           finished = true;
       }
       
@@ -272,47 +262,15 @@ public class LevelEndState extends GameState {
       for ( int i = 0; i < b.length; i++) {
           b[i].draw(g);
       }
-      
-      //sahojen piirto
-       for ( int i = 0; i < s.length; i++) {
-          s[i].draw(g);
-      }
-       //maalin piirto
-         for ( int i = 0; i < goal.length; i++){
-            goal[i].draw(g);
-        }
-         // piikkien piirto
-         for ( int i = 0; i < p.length; i++){
-            p[i].draw(g);
-            
-            // väärinpäin piikkien piirto
-        }
-         for ( int i = 0; i < pT.length; i++){
-            pT[i].draw(g);
-         }
-         //moving saw
-         for ( int i = 0; i < ms.length; i++){
-            ms[i].draw(g);
-        }
-        //cannon
-         for ( int i = 0; i < c.length; i++){
-            c[i].draw(g);
-        }
-         //cannonballLEFT
-         for ( int i = 0; i < cbl.length; i++){
-            cbl[i].draw(g);
-        }
-      
-          // Flames
-         for ( int i = 0; i < f.length; i++){
-            f[i].draw(g);
-        }
          
                // Cabin OFF
-         if ( !finished ) {
+         if ( finishcounter < 45 ) {
          g.drawImage(cabinOFF, 730, 502, null);
-         } else {
-             g.drawImage(cabinON, 730, 502, null);
+         } else if ( finishcounter >= 45 ) {
+           // finishcounter++;
+             
+            g.drawImage(cabinON, 730, 502, null);
+             
          }
          // End text
          if ( jumped ) {
@@ -339,6 +297,7 @@ public class LevelEndState extends GameState {
     public void keyPressed(int k) {
      player.keyPressed(k);
      if ( k == KeyEvent.VK_ESCAPE && finished ) {
+         player.Flush();
          gsm.states.push(new MenuState(gsm));
      }
     }
