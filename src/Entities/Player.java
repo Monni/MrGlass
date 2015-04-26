@@ -143,7 +143,7 @@ public class Player extends Applet {
         
         for (int i = 0; i < b.length; i++){
             //ground collision
-if ( shattered == false) {
+            if ( shattered == false) {
             if (Collision.playerBlock(new Point(iX + width, iY + 2), b[i]) 
                     || Collision.playerBlock(new Point(iX + width, iY + height - 2), b[i])
                     || Collision.playerBlock(new Point(iX + width, iY + height - 20), b[i])) {

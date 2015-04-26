@@ -20,6 +20,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import javax.swing.ImageIcon;
 
 /**
@@ -28,20 +32,31 @@ import javax.swing.ImageIcon;
  */
 public class LevelEndState extends GameState {
     
-    private final Image shatteredMenu = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\shattered.png");
-    private final Image selectorImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\selector.gif");
+    FileWriter fw = null;
+    FileReader fr = null;
+    BufferedWriter bw;
+    BufferedReader br;
+    
+    private final Image newhighscoreImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\snowworld\\newhighscore.png");
+    private final Image nonewwhighscoreImg = Toolkit.getDefaultToolkit().getImage("src\\resources\\snowworld\\nonewhighscore.png");
     private final Image cabinOFF = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\cabin_OFF.png");
     private final Image cabinON = Toolkit.getDefaultToolkit().getImage("src\\resources\\objects\\cabin_ON.png");
     private final Image EndText = Toolkit.getDefaultToolkit().getImage("src\\resources\\snowworld\\Endtext.png");
     
     private Player player;
-    private boolean shattered;
-            private boolean finished = false;
+    private boolean finished = false;
     private boolean jumped = false;
-    
-    private int retryselector;
-    private int currentscore;
+ 
     private int waitcounter = 0;
+    
+    // Scores
+    private int currentscore;
+    private int gamescore;
+    private int highscore;
+    private boolean newhighscore;
+    private boolean scoreGet = false;
+    
+
     
     
     
@@ -69,6 +84,10 @@ public class LevelEndState extends GameState {
     public void init() {
         player = new Player(18,39, 15, 550);
         player.setMovementDisabled(true);
+        getHighScore();
+        
+        
+       
         
         b = new Block[88];
         s = new Saw[0];
@@ -190,13 +209,16 @@ public class LevelEndState extends GameState {
       player.tick(b, s, p, pT, goal, ms, c, cbl, f);
       
       
-      // Haetaan pelaajan tila, retryn tila, pisteet
-      shattered = player.getShatteredBoolean();
-      finished = player.getFinishedBoolean();
-      retryselector = player.getRetrySelector();
-      currentscore = player.getCurrentScore();
+      // Haetaan pelaajan tila ja pisteet
+        if ( !scoreGet ) {
+      gamescore = player.getCurrentScore();
+      scoreGet = true;
+      }
+         if ( gamescore > highscore ) {
+            newhighscore = true;
+        }
       xloc = player.getCurrentX();
-      yloc = player.getCurrentY();
+       
       
       
       // Set player auto movement
@@ -226,9 +248,6 @@ public class LevelEndState extends GameState {
       }
       
     
-      
-      
-       // System.out.println(currentscore);
       
       
     }
@@ -305,31 +324,36 @@ public class LevelEndState extends GameState {
          
          
          
-                     // kuoleman korjatessa
-        
-        if ( shattered ) {
-            g.drawImage(shatteredMenu, 440, 250, this);
-            if ( retryselector == 0 )
-               g.drawImage(selectorImg, 462, 381, null);
-           else if ( retryselector == 1 )
-               g.drawImage(selectorImg, 627, 381, null);
+        // Mökille päästessä
+        if ( finished && newhighscore ) {
+            g.drawImage(newhighscoreImg, 440, 250, this);
+        } else if ( finished && !newhighscore ) {
+            g.drawImage(nonewwhighscoreImg, 440, 250, this);
         }
          
     }
 
     public void keyPressed(int k) {
      player.keyPressed(k);
-     if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 1 )
+     if ( k == KeyEvent.VK_ESCAPE && finished ) {
          gsm.states.push(new MenuState(gsm));
-     else if ( k == KeyEvent.VK_ENTER && shattered && retryselector == 0 ) {
-         player.ScoreCounterReset();
-         gsm.states.push(new LevelIntroState(gsm));
      }
-         
     }
 
     public void keyReleased(int k) {
        player.keyReleased(k);
+    }
+    
+    
+    public void getHighScore() {
+        try {
+            fr = new FileReader("highscore.txt");
+            br = new BufferedReader(fr);
+            this.highscore = Integer.parseInt(br.readLine());
+            br.close();
+        }   catch (Exception e) {
+                System.out.println("Fatal error reading scorefile!");
+            }
     }
     
     
