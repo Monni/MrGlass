@@ -55,6 +55,7 @@ public class Player extends Applet {
       private final double moveSpeed = 2.5;
       
       private boolean flamestatus = false;
+      private boolean movementdisabled = false;
       
       //jumping solve
       private boolean rightChecker = false, leftChecker = false, blocker = false;
@@ -465,7 +466,7 @@ if ( shattered == false) {
     
     public void keyPressed(int k) {
  
-        if ( k == KeyEvent.VK_RIGHT) {
+        if ( k == KeyEvent.VK_RIGHT && !movementdisabled ) {
             right = true;
             rightChecker = true;
             if ( retryselector == 1 ) retryselector = 0;
@@ -473,14 +474,14 @@ if ( shattered == false) {
         }
  
                 
-        if ( k == KeyEvent.VK_LEFT) {
+        if ( k == KeyEvent.VK_LEFT && !movementdisabled ) {
             left = true;
             leftChecker = true;
             if (retryselector == 0) retryselector = 1;
             else    retryselector = 0;
         }
           
-        if ( k == KeyEvent.VK_SPACE && !jumping && !falling) jumping = true;
+        if ( k == KeyEvent.VK_SPACE && !jumping && !falling && !movementdisabled) jumping = true;
     //    if ( k == KeyEvent.VK_RIGHT && jumping && !falling) right = true;
         
         
@@ -581,7 +582,8 @@ if ( shattered == false) {
              this.shattered = shattered;
          }
          
-         public boolean getFalling() {
-             return falling;
+         public void setMovementDisabled(boolean movementdisabled) {
+             this.movementdisabled = movementdisabled;
          }
+         
 }

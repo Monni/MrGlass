@@ -48,6 +48,8 @@ public class LevelEndState extends GameState {
     private int xloc, yloc;
     private Font font;
     
+    
+   
       
     private Spike[] p;
     private SpikeTurned[] pT;
@@ -66,6 +68,7 @@ public class LevelEndState extends GameState {
 
     public void init() {
         player = new Player(18,39, 15, 550);
+        player.setMovementDisabled(true);
         
         b = new Block[88];
         s = new Saw[0];
